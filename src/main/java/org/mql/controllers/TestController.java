@@ -36,12 +36,21 @@ public class TestController {
 	@GetMapping(path = "/add")
 	public @ResponseBody String addNewUser() {
 		List<Formation> formations= new Vector<>();
-		formations.add(new Formation("Java"));
-		formations.add(new Formation("C++"));
-		formations.add(new Formation("Génie Logiciel"));
-		formations.add(new Formation("Oracle"));
-		formations.add(new Formation("Qualité Logiciel"));
-		formations.add(new Formation("Spring"));
+		Formation formation1 = new Formation("JAVA");
+		formation1.add(new Module("Java Beginner","description 1"));
+		formation1.add(new Module("Java Inter","description 1"));		
+		
+		Formation formation2 = new Formation("C++");
+		formation2.add(new Module("C++ Beginner","description 2"));
+		formation2.add(new Module("C++ Inter","description 2"));		
+		
+		Formation formation3 = new Formation("C#");
+		formation3.add(new Module("C# Beginner","description 3"));
+		formation3.add(new Module("C# Inter","description 3"));		
+		
+		formations.add(formation1);
+		formations.add(formation2);
+		formations.add(formation3);
 		
 		formationRepository.saveAll(formations);
 		return "Saved";

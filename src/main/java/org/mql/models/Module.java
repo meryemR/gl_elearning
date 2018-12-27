@@ -57,6 +57,13 @@ public class Module {
 	public Module() {
 
 	}
+	
+
+	public Module(String title, String description) {
+		super();
+		this.title = title;
+		this.description = description;
+	}
 
 	public Module(String title, String description, float reting, String type) {
 		super();

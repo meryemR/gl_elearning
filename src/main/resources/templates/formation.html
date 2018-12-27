@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Formation</title>
+</head>
+<body>
+	<p th:text="'id : ' + ${formation.id}"></p>
+	<p th:text="'title : '+${formation.title}"></p>
+	<p th:text="'category : '+${formation.category}"></p>
+
+	<table>
+		<tr>
+			<th>
+			Module id :
+			<th>
+			<th>
+			Module title :
+			<th>
+		</tr>
+		
+		<tr th:each="module: ${modules}">
+			<td th:text="${module.id}">
+			<td th:text="${module.title}">
+			<td th:text="${module.description}">
+		</tr>
+	</table>
+</body>
+</html>

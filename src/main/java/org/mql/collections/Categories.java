@@ -6,7 +6,21 @@ public enum Categories {
 	DevMobile("DévloppementMobile");
 
 	private Categories(String category) {
+		this.category = category;
 	}
+	
+	private String category;
+
+	public String getCategory() {
+		return category;
+	}
+
+	@Override
+	public String toString() {
+		return this.category;
+	}
+	
+	
 
 
 }
