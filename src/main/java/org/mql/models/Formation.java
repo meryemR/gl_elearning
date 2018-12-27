@@ -59,6 +59,11 @@ public class Formation {
 		this.creatingDate = creatingDate;
 		this.category = category;
 	}
+	
+	public Formation(String title) {
+		super();
+		this.title = title;
+	}
 
 	public int getId() {
 		return id;

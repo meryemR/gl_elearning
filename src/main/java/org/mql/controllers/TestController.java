@@ -1,5 +1,8 @@
 package org.mql.controllers;
 
+import java.util.List;
+import java.util.Vector;
+
 import org.mql.dao.FormationRepository;
 import org.mql.dao.MemberRepository;
 import org.mql.dao.ModuleRepository;
@@ -32,28 +35,15 @@ public class TestController {
 
 	@GetMapping(path = "/add")
 	public @ResponseBody String addNewUser() {
-		Member member = new Member();
-		member.setFirstName("Khalid");
-		member.setLastName("Chahboune");
-		member.setEmail("Khalidqqr@gmail.com");
+		List<Formation> formations= new Vector<>();
+		formations.add(new Formation("Java"));
+		formations.add(new Formation("C++"));
+		formations.add(new Formation("Génie Logiciel"));
+		formations.add(new Formation("Oracle"));
+		formations.add(new Formation("Qualité Logiciel"));
+		formations.add(new Formation("Spring"));
 		
-		Formation formation = new Formation();
-		formation.setTitle("Advanced Java");
-		formation.setCategory("Computer Sciences");
-
-		Module module = new Module();
-		module.setTitle("Java 8");
-
-		formation.add(module);
-
-		Member creator = new Member();
-		creator.setEmail("Creator@Gmail.com");
-		creator.setLastName("Moussamih");
-		formation.setCreator(creator);
-		formation.addMember(member);
-
-		formationRepository.save(formation);
-
+		formationRepository.saveAll(formations);
 		return "Saved";
 	}
 

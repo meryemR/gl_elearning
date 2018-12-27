@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Liste des formations</title>
+</head>
+<body>
+	<table>
+		<tr>
+			<th>
+			formation id :
+			<th>
+			<th>
+			formation title :
+			<th>
+		</tr>
+		
+		<tr th:each="formation: ${formations}">
+			<td th:text="${formation.id}">
+			<td th:text="${formation.title}">
+		</tr>
+	</table>
+</body>
+</html>
