@@ -37,7 +37,7 @@ public class Member {
 	@Column(name = "password")
 	private String password;
 
-	@ManyToMany(mappedBy = "teacher"  ,fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH,
+	@OneToMany(mappedBy = "teacher"  ,fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH,
 			CascadeType.DETACH })
 	
 	private List<Module> teachedModules;
