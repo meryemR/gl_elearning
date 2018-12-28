@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class FormationController {
@@ -65,7 +64,6 @@ public class FormationController {
 	@PostMapping("addModule")
 	public String addModule(@ModelAttribute Module module,@RequestParam("formation_id") int id,@RequestParam("member_id") int memberId,Model model) {
 		Formation formation = formationRepository.findById(id).get();
-		
 		Member member = memberRepository.findById(memberId).get();
 		module.setTeacher(member);
 		formation.add(module);
