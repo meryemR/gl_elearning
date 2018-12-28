@@ -58,7 +58,10 @@ public class Module {
 
 	}
 	
-
+	public Member getTeacher() {
+		return teacher;
+	}
+	
 	public Module(String title, String description) {
 		super();
 		this.title = title;

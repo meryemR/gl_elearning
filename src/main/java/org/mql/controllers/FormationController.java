@@ -3,8 +3,10 @@ package org.mql.controllers;
 import java.util.List;
 
 import org.mql.dao.FormationRepository;
+import org.mql.dao.MemberRepository;
 import org.mql.dao.ModuleRepository;
 import org.mql.models.Formation;
+import org.mql.models.Member;
 import org.mql.models.Module;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +26,8 @@ public class FormationController {
 	
 	@Autowired
 	ModuleRepository moduleRepository;
+	@Autowired
+	MemberRepository memberRepository;
 	
 	@GetMapping("/formation")
 	public String getFormations(Model model) {
@@ -50,17 +54,23 @@ public class FormationController {
 	@GetMapping("/formation/{id}/add")
 	public String ModuleForm(@PathVariable int id,Model model) {
 		Formation formation = formationRepository.findById(id).get();
+		List<Member> members = memberRepository.findAll();
+		System.out.println(members);
+		model.addAttribute("members", members);
 		model.addAttribute("formation", formation);
 		model.addAttribute("module",new Module());
 		return "addmodule";
 	}
 	
 	@PostMapping("addModule")
-	public @ResponseBody String addModule(@ModelAttribute Module module,@RequestParam("formation_id") int id,Model model) {
+	public String addModule(@ModelAttribute Module module,@RequestParam("formation_id") int id,@RequestParam("member_id") int memberId,Model model) {
 		Formation formation = formationRepository.findById(id).get();
+		
+		Member member = memberRepository.findById(memberId).get();
+		module.setTeacher(member);
 		formation.add(module);
 		formationRepository.save(formation);
-		return "added";
+		return "redirect:/formation/"+id;
 	}
 	
 }

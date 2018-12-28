@@ -52,6 +52,16 @@ public class TestController {
 		formations.add(formation2);
 		formations.add(formation3);
 		
+		
+		List<Member> members = new Vector<>();
+		members.add(new Member("Chahboune","Khalid"));
+		members.add(new Member("Moussamih","Omar"));
+		members.add(new Member("Hicham","Haydar"));
+		members.add(new Member("Mohamed","Zaraoui"));
+		members.add(new Member("Brakani","Karim"));
+		members.add(new Member("Elhaddady","Youssef"));
+		
+		memberRepository.saveAll(members);
 		formationRepository.saveAll(formations);
 		return "Saved";
 	}

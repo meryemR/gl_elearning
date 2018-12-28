@@ -50,6 +50,12 @@ public class Member {
 	public Member() {
 
 	}
+	
+	public Member(String firstName, String lastName) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
 
 	public Member(String firstName, String lastName, String email, String password) {
 		super();
@@ -121,7 +127,7 @@ public class Member {
 
 	@Override
 	public String toString() {
-		return "LastName : "+lastName + " FirstName : "+firstName+" Email : "+email;
+		return lastName+" "+firstName;
 	}
 
 	public void addModules(Module module) {

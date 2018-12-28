@@ -17,6 +17,10 @@
 		
 		<input type="text" th:field="*{type}" id="type" placeholder="Type"/>  
 		
+		<select name="member_id">
+			<option th:each="member: ${members}" th:value="${member.id}" th:utext="${member.lastName}+' '+${member.firstName}"> </option>
+		</select>
+		
 		<input type="hidden" name="formation_id" th:value="${formation.id}"/>
 		
 		<input type="submit" value="Submit" />
