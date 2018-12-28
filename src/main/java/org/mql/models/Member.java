@@ -37,9 +37,8 @@ public class Member {
 	@Column(name = "password")
 	private String password;
 
-	@ManyToMany(mappedBy = "teacher"  ,fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH,
+	@OneToMany(mappedBy = "teacher"  ,fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH,
 			CascadeType.DETACH })
-	
 	private List<Module> teachedModules;
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH,
@@ -50,6 +49,13 @@ public class Member {
 	public Member() {
 
 	}
+
+	
+	public Member(String firstName) {
+		super();
+		this.firstName = firstName;
+	}
+
 
 	public Member(String firstName, String lastName, String email, String password) {
 		super();

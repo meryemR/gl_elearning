@@ -58,6 +58,20 @@ public class Module {
 
 	}
 
+	
+	public Module(String title) {
+		super();
+		this.title = title;
+	}
+
+	
+	public Module(String title, Member teacher) {
+		super();
+		this.title = title;
+		this.teacher = teacher;
+	}
+
+
 	public Module(String title, String description, float reting, String type) {
 		super();
 		this.title = title;
@@ -65,6 +79,12 @@ public class Module {
 		this.reting = reting;
 		this.type = type;
 	}
+
+	public Module(int id) {
+		super();
+		this.id=id;
+	}
+
 
 	public void add(Streaming stream) {
 		if (streams == null) {
@@ -151,5 +171,6 @@ public class Module {
 	public String toString() {
 		return "M:Title : "+title+"M:description : "+description;
 	}
+
 
 }

@@ -1,0 +1,26 @@
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+       
+    </head>
+    <body>
+        <div>
+            <!-- <button th:href="@{https://www.youtube.com/webcam}"></button> -->
+            <a href="https://www.youtube.com/webcam" target="_blank">Lancer le cours en live</a>
+        </div>
+
+        <div>
+            <form th:action="@{/addStream}" th:object="${streaming}" method="post">
+                 titre: <input type="text" th:field="*{title}"></br> 
+<!-- Similar to <input type="text" id="title" name="title" th:value="*{title}" /> -->
+                
+                url: <input type="text" th:field="*{url}"></br>
+                duration: <input type="text" th:field="*{duration}"></br>
+<!--           Recupere les Teached Modules  -->
+                module: <select th:field="*{module}">
+                    <option th:each="module : ${teachedModules}" th:value="${module.id}" th:text="${module.title}"></option>
+                    </select></br>
+                    <input type="submit" value="submit">
+            </form>
+        </div>
+    </body>
+</html>
