@@ -1,4 +1,4 @@
-package org.mql.controllers;
+package org.mql.controllers.dashboard;
 
 import java.util.List;
 
@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class FormationController {
+@RequestMapping("/dashboard")
+public class DashFormationController {
 
 	@Autowired
 	FormationRepository formationRepository;
@@ -30,24 +32,11 @@ public class FormationController {
 	
 	@GetMapping("/formation")
 	public String getFormations(Model model) {
+
 		List<Formation> formations = formationRepository.findAll();
 		model.addAttribute("formations", formations);
-		return "formationlist";
-	}
-	
-	@GetMapping("/formation/{id}")
-	public String getFormation(@PathVariable int id,Model model) {
-		Formation formation = formationRepository.findById(id).get();
-		model.addAttribute("formation", formation);
-		model.addAttribute("modules", formation.getModules() );
-		return "formation";
-	}
-	
-	@GetMapping("/module/{id}")
-	public String getModule(@PathVariable int id,Model model) {
-		Module module = moduleRepository.findById(id).get();
-		model.addAttribute("module", module);
-		return "module";
+
+		return "dashboard/formations";
 	}
 	
 	@GetMapping("/formation/{id}/add")
@@ -58,7 +47,7 @@ public class FormationController {
 		model.addAttribute("members", members);
 		model.addAttribute("formation", formation);
 		model.addAttribute("module",new Module());
-		return "addmodule";
+		return "/dashboard/addmodule";
 	}
 	
 	@PostMapping("addModule")
@@ -68,7 +57,7 @@ public class FormationController {
 		module.setTeacher(member);
 		formation.add(module);
 		formationRepository.save(formation);
-		return "redirect:/dashboard/formation";
+		return "redirect:/dashboard/formation/";
 	}
 	
 }
