@@ -79,12 +79,13 @@ public class StreamingController {
 	}
 	
 	@GetMapping("stream/{id}")
-	public @ResponseBody String showStream(@PathVariable int id ,Model model) {
+	public  String showStream(@PathVariable int id ,Model model) {
 		// On recupere le stream ainsi que ses attributs 
-		//Streaming streaming = streamingRepository.findById(id).get();
-		
-		return "success "+id;
-		//return "main_views/streamVideo";
+		Streaming streaming = streamingRepository.findById(id).get();
+		model.addAttribute("streaming",streaming);
+		System.out.println(streaming.getUrl());
+		//return "success "+id;
+		return "main_views/streamVideo";
 		
 	}
 

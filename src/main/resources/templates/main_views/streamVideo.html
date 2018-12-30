@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Testing the stream</title>
+</head>
+<body>
+
+<h1 th:text="${streaming.title}">Video Title</h1>
+
+<div>
+	<iframe width="1000" height="600" autop
+		th:src="|https://www.youtube.com/embed/${streaming.url}?autoplay=1|">
+	</iframe>
+</div>
+
+
+		
+</body>
+</html>
