@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Formation</title>
+</head>
+<body>
+	<a th:href="@{/formation/}">liste</a>
+
+	<p th:text="'id : ' + ${formation.id}"></p>
+	<p th:text="'title : '+${formation.title}"></p>
+	<p th:text="'category : '+${formation.category}"></p>
+
+	<h2>Modules</h2>
+	<table>
+		<tr>
+			<th>id</th>
+			<th>title</th>
+			<th>description</th>
+			<th>Teacher</th>
+		</tr>
+		<tr th:each="module: ${modules}">
+			<td th:text="${module.id}">
+			<td th:text="${module.title}">
+			<td th:text="${module.description}">
+			<td th:text="${module.teacher}">
+		</tr>
+	</table>
+	<a th:href="@{/formation/{id}/add(id=${formation.id})}">Add a Module</a>
+</body>
+</html>
