@@ -32,8 +32,8 @@ public class Module {
 	@Column(name = "description")
 	private String description;
 
-	@Column(name = "reting")
-	private float reting;
+	@Column(name = "rating")
+	private float rating;
 
 	@Column(name = "type")
 	private String type;
@@ -72,11 +72,11 @@ public class Module {
 	}
 
 
-	public Module(String title, String description, float reting, String type) {
+	public Module(String title, String description, float rating, String type) {
 		super();
 		this.title = title;
 		this.description = description;
-		this.reting = reting;
+		this.rating = rating;
 		this.type = type;
 	}
 
@@ -108,8 +108,8 @@ public class Module {
 		return id;
 	}
 
-	public float getReting() {
-		return reting;
+	public float getrating() {
+		return rating;
 	}
 
 	public List<Streaming> getStreams() {
@@ -140,8 +140,8 @@ public class Module {
 		this.id = id;
 	}
 
-	public void setReting(float reting) {
-		this.reting = reting;
+	public void setrating(float rating) {
+		this.rating = rating;
 	}
 
 	public void setStreams(List<Streaming> streams) {

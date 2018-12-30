@@ -127,7 +127,7 @@ public class Member {
 
 	@Override
 	public String toString() {
-		return "LastName : "+lastName + " FirstName : "+firstName+" Email : "+email;
+		return lastName+" "+firstName;
 	}
 
 	public void addModules(Module module) {
