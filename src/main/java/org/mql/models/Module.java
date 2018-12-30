@@ -57,20 +57,16 @@ public class Module {
 	public Module() {
 
 	}
-
 	
-	public Module(String title) {
+	public Member getTeacher() {
+		return teacher;
+	}
+	
+	public Module(String title, String description) {
 		super();
 		this.title = title;
+		this.description = description;
 	}
-
-	
-	public Module(String title, Member teacher) {
-		super();
-		this.title = title;
-		this.teacher = teacher;
-	}
-
 
 	public Module(String title, String description, float rating, String type) {
 		super();
@@ -79,12 +75,6 @@ public class Module {
 		this.rating = rating;
 		this.type = type;
 	}
-
-	public Module(int id) {
-		super();
-		this.id=id;
-	}
-
 
 	public void add(Streaming stream) {
 		if (streams == null) {
@@ -108,7 +98,7 @@ public class Module {
 		return id;
 	}
 
-	public float getrating() {
+	public float getRating() {
 		return rating;
 	}
 
@@ -140,7 +130,7 @@ public class Module {
 		this.id = id;
 	}
 
-	public void setrating(float rating) {
+	public void setRating(float rating) {
 		this.rating = rating;
 	}
 
@@ -171,6 +161,5 @@ public class Module {
 	public String toString() {
 		return "M:Title : "+title+"M:description : "+description;
 	}
-
 
 }
