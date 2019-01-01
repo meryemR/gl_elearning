@@ -36,23 +36,16 @@ public class TestController {
 	@GetMapping(path = "/add")
 	public @ResponseBody String addNewUser() {
 		List<Formation> formations= new Vector<>();
-		Formation formation1 = new Formation("JAVA");
-		formation1.add(new Module("Java Beginner","description 1"));
-		formation1.add(new Module("Java Inter",""));	
+		Formation formation1 = new Formation("JAVA");	
 		formation1.setCategory("Enterprise Edition Programming Lanugages");
 		formation1.setCreatingDate("15/03/2014");
 		
-		
-		Formation formation2 = new Formation("C++");
-		formation2.add(new Module("C++ Beginner","description 2"));
-		formation2.add(new Module("C++ Inter","description 2"));		
+		Formation formation2 = new Formation("C++");		
 		formation2.setCategory("C++ Games Dev");
 		formation2.setCreatingDate("05/04/2017");
 		
 		
-		Formation formation3 = new Formation("C#");
-		formation3.add(new Module("C# Beginner","description 3"));
-		formation3.add(new Module("C# Inter","description 3"));		
+		Formation formation3 = new Formation("C#");		
 		formation3.setCategory("Microsoft Programming Languages");
 		formation3.setCreatingDate("10/11/2018");
 		

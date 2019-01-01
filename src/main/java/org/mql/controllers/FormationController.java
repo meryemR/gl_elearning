@@ -39,6 +39,7 @@ public class FormationController {
 	public String getFormation(@PathVariable int id,Model model) {
 		Formation formation = formationRepository.findById(id).get();
 		model.addAttribute("formation", formation);
+		model.addAttribute("member",memberRepository.findById(1).get());
 		model.addAttribute("modules", formation.getModules() );
 		return "formation";
 	}
@@ -50,6 +51,13 @@ public class FormationController {
 		return "module";
 	}
 	
+	@GetMapping("/form/{id}")
+	public String getForm(@PathVariable int id,Model model) {
+		Formation formation =formationRepository.findById(id).get();
+		model.addAttribute("formation",formation);
+		return "/formations/formation";
+	}
+	
 	@GetMapping("/formation/{id}/add")
 	public String ModuleForm(@PathVariable int id,Model model) {
 		Formation formation = formationRepository.findById(id).get();
@@ -59,6 +67,17 @@ public class FormationController {
 		model.addAttribute("formation", formation);
 		model.addAttribute("module",new Module());
 		return "addmodule";
+	}
+	
+	@GetMapping("/formation/{id}/follow")
+	public String followFormation(@PathVariable int id,Model model) {
+		Member member = memberRepository.findById(1).get();
+		Formation formation = formationRepository.findById(id).get();
+		if(!formation.getMembers().contains(member)) {
+			formation.addMember(member);
+			formationRepository.save(formation);	
+		}
+		return "redirect:/formation/"+id;
 	}
 	
 	@PostMapping("addModule")
