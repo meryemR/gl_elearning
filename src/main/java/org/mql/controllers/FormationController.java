@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class FormationController {
@@ -81,21 +82,21 @@ public class FormationController {
 	{
 		model.addAttribute("formation",new Formation());
 		model.addAttribute("member",new Member());
-		return "admin_section/add-listing" ;
+		return "dashboard/addFormation" ;
 	}
 	//affichage de la formation ajoutee**********************************************************************
 	@PostMapping(value="/save")
-	public String save(Model model,@Valid Formation formation,Member member, BindingResult bindingResult)
+	public @ResponseBody String save(Model model,@Valid Formation formation,Member member, BindingResult bindingResult)
 	{
 		if(bindingResult.hasErrors())
 		{
-			return "admin_section/add-listing" ;
+			return "dashboard/addFormation" ;
 		}
 		//formationRepository.save(formation);
 		member=memberRepository.findByEmail(member.getEmail());
 		formation.setCreator(member);
 		formationRepository.save(formation);
-		return "admin_section/course-detail" ;
+		return "Formation Ajoutée!" ;
 	}
 	//page dans l'acceuil pour afficher toutes les formations*************************************************
 	@GetMapping(value="/listeFormations")
@@ -103,7 +104,7 @@ public class FormationController {
 	{
 		List<Formation> Formations=formationRepository.findAll();
 		model.addAttribute("listeFormations",Formations);	
-		return "main_views/courses-list" ;
+		return "main_views/listformations" ;
 	}
 	
 }

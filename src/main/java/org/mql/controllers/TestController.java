@@ -62,8 +62,18 @@ public class TestController {
 		
 		
 		List<Member> members = new Vector<>();
-		members.add(new Member("Chahboune","Khalid"));
-		members.add(new Member("Moussamih","Omar"));
+		Member member = new Member();
+		member.setFirstName("Khalid");
+		member.setLastName("Chahboune");
+		member.setEmail("Khalidqqr@gmail.com");
+		
+		Member member0 = new Member();
+		member0.setFirstName("Chaimae");
+		member0.setLastName("Zarhouni");
+		member0.setEmail("Chaimaeqqr@gmail.com");
+		members.add(member0);
+		members.add(member);
+		
 		members.add(new Member("Hicham","Haydar"));
 		members.add(new Member("Mohamed","Zaraoui"));
 		members.add(new Member("Brakani","Karim"));
