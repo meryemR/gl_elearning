@@ -2,6 +2,8 @@ package org.mql.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.mql.dao.FormationRepository;
 import org.mql.dao.MemberRepository;
 import org.mql.dao.ModuleRepository;
@@ -11,11 +13,13 @@ import org.mql.models.Module;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class FormationController {
@@ -88,6 +92,38 @@ public class FormationController {
 		formation.add(module);
 		formationRepository.save(formation);
 		return "redirect:/dashboard/formation";
+	}
+	
+
+	//CODE HAJAR : ajouter une formation via une formulaire**************************************************
+	@GetMapping(value="/FormulaireFormation")
+	public String FormulaireFormation(Model model)
+	{
+		model.addAttribute("formation",new Formation());
+		model.addAttribute("member",new Member());
+		return "dashboard/addFormation" ;
+	}
+	//affichage de la formation ajoutee**********************************************************************
+	@PostMapping(value="/save")
+	public @ResponseBody String save(Model model,@Valid Formation formation,Member member, BindingResult bindingResult)
+	{
+		if(bindingResult.hasErrors())
+		{
+			return "dashboard/addFormation" ;
+		}
+		//formationRepository.save(formation);
+		member=memberRepository.findByEmail(member.getEmail());
+		formation.setCreator(member);
+		formationRepository.save(formation);
+		return "Formation Ajoutée!" ;
+	}
+	//page dans l'acceuil pour afficher toutes les formations*************************************************
+	@GetMapping(value="/listeFormations")
+	public String index(Model model)
+	{
+		List<Formation> Formations=formationRepository.findAll();
+		model.addAttribute("listeFormations",Formations);	
+		return "main_views/listformations" ;
 	}
 	
 }
