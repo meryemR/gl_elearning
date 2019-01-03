@@ -34,58 +34,55 @@ public class StreamingController {
 	MemberRepository memberRepository;
 
 	
-	@GetMapping("/showStreamForm")
+	@GetMapping("dashboard/showStreamForm")
 	public String showStreamForm(Model model) {
-		// ajouter certains modules pour le test
-//		List<Module> test = new Vector<>();
-//		test.add(new Module("nanana", new Member("khalid")));
-//		test.add(new Module("hvybyh", new Member("omar")));
-//		test.add(new Module("hghnj", new Member("hicham")));
-//		moduleRepository.saveAll(test);
-		
 		//Recuperer l'ID de L'enseignant Connecter par le biais des variables de sessions
 		
 		//Recuperer tt Les modules enseigner par cet enseignant
 		// à ameliorer
 		List<Module> modules = moduleRepository.findAll();
-		//List<Module> modules = memberRepository.findById(1).get().getTeachedModules();
+		
+		/*cette methode va etre utiliser apres a la place de la methode presedente  
+		*List<Module> modules = memberRepository.findById(1).get().getTeachedModules();
+		*/
 
 		//remplir un modalAttribute par ces modules 
-		model.addAttribute("teachedModules", modules);
-		model.addAttribute("streaming",new Streaming());
+			model.addAttribute("teachedModules", modules);
+			model.addAttribute("streaming",new Streaming());
 		
 		//test
-		System.out.println(modules);
+			System.out.println(modules);
 		
-		return "main_views/streamForm" ;
+		return "dashboard/streamForm" ;
 	}
 	
-	@PostMapping("/addStream")
+	@PostMapping("dashboard/addStream")
 	public  String addStream(@ModelAttribute Streaming streaming) {
 		// recuperer les donnees du formulaire dans un bean temporaire
 		Module module = moduleRepository.findById(streaming.getModule().getId()).get();
-		//ajouter le streaming dans le module correspondant
 		
 		//Renseigner le champs started time par la date courante
 		streaming.setTimeStarted(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
 		
+		//ajouter le streaming dans le module correspondant
 		module.add(streaming);
-		// persister les donnees a la BD
+		
+		// persister les donnees à la BD
 		moduleRepository.saveAndFlush(module);
 		
 		
-		return "redirect:/stream/"+streamingRepository.findFirstByOrderByIdDesc().getId();
+		return "redirect:/dashboard/stream/"+streamingRepository.findFirstByOrderByIdDesc().getId();
 		
 	}
 	
-	@GetMapping("stream/{id}")
+	@GetMapping("dashboard/stream/{id}")
 	public  String showStream(@PathVariable int id ,Model model) {
 		// On recupere le stream ainsi que ses attributs 
 		Streaming streaming = streamingRepository.findById(id).get();
 		model.addAttribute("streaming",streaming);
-		System.out.println(streaming.getUrl());
+		//System.out.println(streaming.getUrl());
 		//return "success "+id;
-		return "main_views/streamVideo";
+		return "dashboard/streamVideo";
 		
 	}
 
