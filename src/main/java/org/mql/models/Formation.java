@@ -36,6 +36,31 @@ public class Formation {
 
 	@Column(name = "category")
 	private String category;
+	
+	@Column(name = "description",columnDefinition="TEXT")
+	private String description;	
+	
+	
+
+	public Formation(String title, String creatingDate, String category, String description, List<Module> modules,
+			List<Member> members, Member creator) {
+		super();
+		this.title = title;
+		this.creatingDate = creatingDate;
+		this.category = category;
+		this.description = description;
+		this.modules = modules;
+		this.members = members;
+		this.creator = creator;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
 	@OneToMany(mappedBy = "formation", cascade = CascadeType.ALL)
 	private List<Module> modules;
