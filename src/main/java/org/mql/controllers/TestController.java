@@ -70,9 +70,19 @@ public class TestController {
 		members.add(new Member("Mohamed","Zaraoui"));
 		members.add(new Member("Brakani","Karim"));
 		members.add(new Member("Elhaddady","Youssef"));
+
+		// ajouter certains modules pour le test
+		List<Module> modules = new Vector<>();
+		modules.add(new Module("Java", new Member("khalid")));
+		modules.add(new Module("Oracle", new Member("omar")));
+		modules.add(new Module("XML", new Member("hicham")));
+		modules.add(new Module("TEC", new Member("Douhi")));
+		modules.add(new Module("Génie Logiciel", new Member("Mouad")));
 		
+		moduleRepository.saveAll(modules);
 		memberRepository.saveAll(members);
 		formationRepository.saveAll(formations);
+		
 		return "Saved";
 	}
 
@@ -100,6 +110,11 @@ public class TestController {
 	public String register() {
 		return "main_views/register";
 	}
+	
+//	@GetMapping("/stream")
+//	public String stream() {
+//		return "streamVideo";
+//	}
 
 	@GetMapping(path = "/allMembers")
 	public @ResponseBody String getAllMembers() {
