@@ -32,7 +32,7 @@ public class MemberController {
 				return "register" ;
 			}
 			memberRepository.save(member);
-			return "main_views/ProfileStudent" ;
+			return "main_views/member_profile" ;
 		}
 
 		

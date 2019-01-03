@@ -10,7 +10,6 @@ import org.mql.dao.StreamingRepository;
 import org.mql.dao.TimingRepository;
 import org.mql.models.Formation;
 import org.mql.models.Member;
-import org.mql.models.Module;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,7 +35,7 @@ public class TestController {
 	@GetMapping(path = "/add")
 	public @ResponseBody String addNewUser() {
 		List<Formation> formations= new Vector<>();
-		Formation formation1 = new Formation("JAVA");	
+		Formation formation1 = new Formation("JAVA");
 		formation1.setCategory("Enterprise Edition Programming Lanugages");
 		formation1.setCreatingDate("15/03/2014");
 		
@@ -77,20 +76,9 @@ public class TestController {
 		return "Saved";
 	}
 
-	@GetMapping("/greeting")
-	public String greeting() {
-
-		return "greeting";
-	}
-
 	@GetMapping("/")
 	public String home() {
 		return "main_views/home";
-	}
-
-	@GetMapping("/formations")
-	public String formation() {
-		return "main_views/formations";
 	}
 	
 	@GetMapping("/articles")

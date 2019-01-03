@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
@@ -12,7 +13,7 @@
   <div class="content-wrapper">
 
 <!-- formulaire d'ajout d'une formation************************************************************************* -->
-    <form th:action="@{save}" method="post" >
+    <form th:action="@{/saveFormation}" method="post" >
     <div class="container-fluid">
       <!-- Breadcrumbs-->
       <ol class="breadcrumb">
@@ -40,7 +41,7 @@
 				<div class="col-md-6">
 					<div class="form-group">			
 						<label>Course start</label>
-					<p><input type="text"  class="form-control date-pick" placeholder="Course start" name="creatingDate" th:value="${formation.creatingDate}" /></p>
+					<p><input type="text"  class="form-control date-pick" autocomplete="off" placeholder="Début du formation" name="creatingDate" th:value="${formation.creatingDate}" /></p>
 					</div>
 				</div>
 				<div class="col-md-6">
@@ -125,11 +126,13 @@
 
 
 	<!-- Custom scripts for this page-->
-	<script th:src="@{vendor/dropzone.min.js}"></script>
-	<script th:src="@{vendor/bootstrap-datepicker.js}"></script>
-	<script>
+	<script th:src="@{/vendor/dropzone.min.js}"></script>
+	<script th:src="@{/vendor/bootstrap-datepicker.js}"></script>
+	<script type="text/javascript">
 		$('input.date-pick').datepicker();
 	</script>
+
+	
 	
 </body>
 </html>

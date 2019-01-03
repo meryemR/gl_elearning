@@ -17,7 +17,7 @@
 		<section id="hero_in" class="general">
 			<div class="wrapper">
 				<div class="container">
-					<h1 class="fadeInUp"><span></span>Student detail</h1>
+					<h1 class="fadeInUp"><span></span>Profile</h1>
 				</div>
 			</div>
 		</section>
@@ -26,7 +26,7 @@
 			<div class="row">
 				<aside class="col-lg-3" id="sidebar">
 					<div class="profile">
-						<figure><img src="http://via.placeholder.com/150x150/ccc/fff/teacher_2_small.jpg" alt="Teacher" class="rounded-circle"></figure>
+						<figure><img  th:src="@{${'https://via.placeholder.com/150x150/212529/fff?text='+#strings.substring(member.firstName,0,1)}}"   alt="Teacher" class="rounded-circle"></figure>
 						<ul class="social_teacher">
 							<li><a href="#"><i class="icon-facebook"></i></a></li>
 							<li><a href="#"><i class="icon-twitter"></i></a></li>
@@ -34,9 +34,9 @@
 							<li><a href="#"><i class="icon-email"></i></a></li>
 						</ul>
 						<ul>
-							<li>firstName <span class="float-right"><label th:text="${member.firstName}"  th:object="${member}"></</label></span> </li>
-							<li>LastName <span class="float-right"><label th:text="${member.lastName}"  th:object="${member}"></</label></span></li>
-							<li>email <span class="float-right"><label th:text="${member.email}"  th:object="${member}"></</label></span></li>
+							<li>Prenom :<span class="float-right"><label th:text="${member.firstName}"  th:object="${member}"></</label></span> </li>
+							<li>Nom :<span class="float-right"><label th:text="${member.lastName}"  th:object="${member}"></</label></span></li>
+							<li>Email :<span class="float-right"><label th:text="${member.email}"  th:object="${member}"></</label></span></li>
 							
 						</ul>
 					</div>
@@ -48,10 +48,8 @@
 						<div class="indent_title_in">
 							<i class="pe-7s-user"></i>
 							<h3>Profile</h3>
-							<p>Mussum ipsum cacilds, vidis litro abertis.</p>
 						</div>
 						<div class="wrapper_indent">
-							<p>Lorem ipsum dolor sit amet, dicta oportere ad est, ea eos partem neglegentur theophrastus. Esse voluptatum duo ne, expetenda corrumpit no per, at mei nobis lucilius. No eos semper aperiri neglegentur, vis noluisse quaestio no. Vix an nostro inimicus, qui ut animal fabellas reprehendunt. In quando repudiare intellegebat sed, nam suas dicta melius ea.</p>
 							<p>Mei ut decore accusam consequat, alii dignissim no usu. Phaedrum intellegat sit ut, no pri mutat eirmod. In eum iriure perpetua adolescens, pri dicunt prodesset et. Vis dicta postulant ad.</p>
 							<h5>Credentials</h5>
 							<p>Lorem ipsum dolor sit amet, dicta oportere ad est, ea eos partem neglegentur theophrastus. Esse voluptatum duo ne, expetenda corrumpit no per, at mei nobis lucilius. No eos semper aperiri neglegentur, vis noluisse quaestio no. Vix an nostro inimicus, qui ut animal fabellas reprehendunt. In quando repudiare intellegebat sed, nam suas dicta melius ea.</p>
