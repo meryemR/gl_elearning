@@ -33,7 +33,8 @@
 						</ul>
 						<h6>Description</h6> 
 						<p>Lorem ipsum dolor sit amet, est ei idque voluptua copiosae, pro detracto disputando reformidans at, ex vel suas eripuit. Vel alii zril maiorum ex, mea id sale eirmod epicurei. Sit te possit senserit, eam alia veritus maluisset ei, id cibo vocent ocurreret per. Te qui doming doctus referrentur, usu debet tamquam et. Sea ut nullam aperiam, mei cu tollit salutatus delicatissimi. His appareat perfecto intellegat te. </p>
-						<h6>Modules</h6>
+						
+						<h6 th:if="${not #lists.isEmpty(formation.modules)}">Modules</h6>
 						
 						<ul>
 							<li th:each="module: ${formation.modules}">
@@ -49,6 +50,7 @@
 			</div>
 		</div>
 		<!-- /box_general-->
+		<!--  
 		<nav aria-label="...">
 			<ul class="pagination pagination-sm add_bottom_30">
 				<li class="page-item disabled">
@@ -62,6 +64,9 @@
 				</li>
 			</ul>
 		</nav>
+		
+		-->
+		
 		<!-- /pagination-->
 	  </div>
 	  <!-- /container-fluid-->

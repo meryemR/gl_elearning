@@ -46,7 +46,7 @@
 			</div>
 			<ul id="top_menu">
 				<li><a th:href="@{#0}" class="search-overlay-menu-btn">Search</a></li>
-				<li class="hidden_tablet"><a th:href="@{login}" class="btn_1 rounded">LOGIN</a></li>
+				<li class="hidden_tablet"><a th:href="@{/login}" class="btn_1 rounded">LOGIN</a></li>
 			</ul>
 			<!-- /top_menu -->
 			<a th:href="@{#menu}" class="btn_mobile">
@@ -61,11 +61,11 @@
 					<li><span><a th:href="@{/}">Accueil</a></span>
 
 					</li>
-					<li><span><a th:href="@{formations}">Formations</a></span>
+					<li><span><a th:href="@{/formations}">Formations</a></span>
 					</li>
-					<li><span><a th:href="@{articles}">Articles</a></span>
+					<li><span><a th:href="@{/articles}">Articles</a></span>
 					</li>
-					<li><span><a th:href="@{contacts}">Contact Us</a></span>
+					<li><span><a th:href="@{/contacts}">Contact Us</a></span>
 					</li>
 
 				</ul>
@@ -139,7 +139,7 @@
 							</div>
 							<ul>
 								<li></li>
-								<li><a th:th:href="course-detail.html">Inscrire</a></li>
+								<li><a th:href="course-detail.html">Inscrire</a></li>
 							</ul>
 						</div>
 					</div>
@@ -456,10 +456,10 @@
 						<h5>Useful links</h5>
 						<ul class="links">
 							<li><a th:href="@{#}">About</a></li>
-							<li><a th:href="@{login}">Login</a></li>
-							<li><a th:href="@{register}">Inscription</a></li>
-							<li><a th:href="@{articles}">Articles</a></li>
-							<li><a th:href="@{contacts}">Contacts</a></li>
+							<li><a th:href="@{/login}">Login</a></li>
+							<li><a th:href="@{/register}">Inscription</a></li>
+							<li><a th:href="@{/articles}">Articles</a></li>
+							<li><a th:href="@{/contacts}">Contacts</a></li>
 						</ul>
 					</div>
 					<div class="col-lg-3 col-md-6">

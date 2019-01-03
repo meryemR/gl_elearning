@@ -30,10 +30,15 @@ public class DashFormationController {
 	@Autowired
 	MemberRepository memberRepository;
 	
+	@GetMapping("/")
+	public String mainPage() {
+		return "redirect:/dashboard/formation/";
+	}
+	
 	@GetMapping("/formation")
 	public String getFormations(Model model) {
 
-		List<Formation> formations = formationRepository.findAll();
+		List<Formation> formations = formationRepository.findAllByOrderByIdDesc();
 		model.addAttribute("formations", formations);
 
 		return "dashboard/formations";
