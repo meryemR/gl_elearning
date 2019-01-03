@@ -43,8 +43,6 @@
 	</table>
 	
 	
-	<p th:text="${member}"> </p>
-	
 	<a th:href="@{/formation/{id}/add(id=${formation.id})}">Add a Module</a>
 	<a th:href="@{/formation/{id}/follow(id=${formation.id})}" th:if="${!#lists.contains(formation.members,member)}">Follow Formation</a>
 	
