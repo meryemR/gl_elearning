@@ -10,6 +10,7 @@ import org.mql.dao.StreamingRepository;
 import org.mql.dao.TimingRepository;
 import org.mql.models.Formation;
 import org.mql.models.Member;
+import org.mql.models.Module;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -70,7 +71,8 @@ public class TestController {
 		members.add(new Member("Mohamed","Zaraoui"));
 		members.add(new Member("Brakani","Karim"));
 		members.add(new Member("Elhaddady","Youssef"));
-
+		
+		
 		// ajouter certains modules pour le test
 		List<Module> modules = new Vector<>();
 		modules.add(new Module("Java", new Member("khalid")));
@@ -80,6 +82,7 @@ public class TestController {
 		modules.add(new Module("Génie Logiciel", new Member("Mouad")));
 		
 		moduleRepository.saveAll(modules);
+		
 		memberRepository.saveAll(members);
 		formationRepository.saveAll(formations);
 		

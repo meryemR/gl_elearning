@@ -34,7 +34,7 @@ public class StreamingController {
 	MemberRepository memberRepository;
 
 	
-	@GetMapping("dashboard/showStreamForm")
+	@GetMapping("dashboard/stream/add")
 	public String showStreamForm(Model model) {
 		//Recuperer l'ID de L'enseignant Connecter par le biais des variables de sessions
 		
@@ -56,7 +56,7 @@ public class StreamingController {
 		return "dashboard/streamForm" ;
 	}
 	
-	@PostMapping("dashboard/addStream")
+	@PostMapping("dashboard/saveStream")
 	public  String addStream(@ModelAttribute Streaming streaming) {
 		// recuperer les donnees du formulaire dans un bean temporaire
 		Module module = moduleRepository.findById(streaming.getModule().getId()).get();
@@ -71,11 +71,11 @@ public class StreamingController {
 		moduleRepository.saveAndFlush(module);
 		
 		
-		return "redirect:/dashboard/stream/"+streamingRepository.findFirstByOrderByIdDesc().getId();
+		return "redirect:/stream/"+streamingRepository.findFirstByOrderByIdDesc().getId();
 		
 	}
 	
-	@GetMapping("dashboard/stream/{id}")
+	@GetMapping("/stream/{id}")
 	public  String showStream(@PathVariable int id ,Model model) {
 		// On recupere le stream ainsi que ses attributs 
 		Streaming streaming = streamingRepository.findById(id).get();

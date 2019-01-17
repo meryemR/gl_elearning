@@ -56,6 +56,13 @@ public class Member {
 		this.firstName = firstName;
 		this.lastName = lastName;
 	}
+	
+	
+
+	public Member(String firstName) {
+		super();
+		this.firstName = firstName;
+	}
 
 	public Member(String firstName, String lastName, String email, String password) {
 		super();
