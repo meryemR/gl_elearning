@@ -35,28 +35,6 @@ public class FormationController {
 		return "/formations/formation";
 	}
 	
-	//CODE HAJAR : ajouter une formation via une formulaire**************************************************
-	@GetMapping(value="/dashboard/formation/add")
-	public String FormulaireFormation(Model model)
-	{
-		model.addAttribute("formation",new Formation());
-		model.addAttribute("member",new Member());
-		return "dashboard/addFormation" ;
-	}
-	//affichage de la formation ajoutee**********************************************************************
-	@PostMapping(value="/saveFormation")
-	public String save(Model model,@Valid Formation formation,Member member, BindingResult bindingResult)
-	{
-		if(bindingResult.hasErrors())
-		{
-			return "/dashboard/formation/add" ;
-		}
-		//formationRepository.save(formation);
-		member=memberRepository.findByEmail(member.getEmail());
-		formation.setCreator(member);
-		formationRepository.save(formation);
-		return "redirect:/dashboard/formation/";
-	}
 	//page dans l'acceuil pour afficher toutes les formations*************************************************
 	@GetMapping(value="/formations")
 	public String index(Model model)

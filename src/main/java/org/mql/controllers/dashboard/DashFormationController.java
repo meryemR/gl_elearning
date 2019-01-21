@@ -2,6 +2,8 @@ package org.mql.controllers.dashboard;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.mql.dao.FormationRepository;
 import org.mql.dao.MemberRepository;
 import org.mql.dao.ModuleRepository;
@@ -11,6 +13,7 @@ import org.mql.models.Module;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -43,6 +46,33 @@ public class DashFormationController {
 
 		return "dashboard/formations";
 	}
+	
+
+	//CODE HAJAR : ajouter une formation via une formulaire**************************************************
+	@GetMapping(value="formation/add")
+	public String FormulaireFormation(Model model)
+	{
+		model.addAttribute("formation",new Formation());
+		model.addAttribute("member",new Member());
+		return "dashboard/addFormation" ;
+	}
+	
+	//affichage de la formation ajoutee**********************************************************************
+	@PostMapping(value="/saveFormation")
+	public String save(Model model,@Valid Formation formation,Member member, BindingResult bindingResult)
+	{
+		if(bindingResult.hasErrors())
+		{
+			return "/dashboard/formation/add" ;
+		}
+		//formationRepository.save(formation);
+		member=memberRepository.findByEmail(member.getEmail());
+		formation.setCreator(member);
+		formationRepository.save(formation);
+		return "redirect:/dashboard/formation/";
+	}
+	
+	
 	
 	@GetMapping("/formation/{id}/add")
 	public String ModuleForm(@PathVariable int id,Model model) {

@@ -1,6 +1,7 @@
 package org.mql.models;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -14,14 +15,19 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "member")
-public class Member {
+public class Member implements UserDetails{
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-
 	@Column(name = "memb_id")
 	private int id;
 
@@ -37,9 +43,9 @@ public class Member {
 	@Column(name = "password")
 	private String password;
 
-	@OneToMany(mappedBy = "teacher"  ,fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH,
-			CascadeType.DETACH })
-	
+	@OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE,
+			CascadeType.REFRESH, CascadeType.DETACH })
+
 	private List<Module> teachedModules;
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH,
@@ -47,17 +53,22 @@ public class Member {
 	@JoinTable(name = "following", joinColumns = @JoinColumn(name = "memb_id"), inverseJoinColumns = @JoinColumn(name = "form_id"))
 	private List<Formation> followedFormations;
 
+	
+	// roles for security :
+	@OneToOne
+	@JoinColumn(name = "role_id")
+	private Role role;
+	//
+
 	public Member() {
 
 	}
-	
+
 	public Member(String firstName, String lastName) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 	}
-	
-	
 
 	public Member(String firstName) {
 		super();
@@ -105,6 +116,7 @@ public class Member {
 		this.email = email;
 	}
 
+	@Override
 	public String getPassword() {
 		return password;
 	}
@@ -134,7 +146,7 @@ public class Member {
 
 	@Override
 	public String toString() {
-		return lastName+" "+firstName;
+		return lastName + " " + firstName;
 	}
 
 	public void addModules(Module module) {
@@ -146,4 +158,42 @@ public class Member {
 		teachedModules.add(module);
 	}
 
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		List<GrantedAuthority> authorities = new ArrayList<>();
+		authorities.add(new SimpleGrantedAuthority(role.getName()));
+		return authorities;
+	}
+	
+
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return email;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	
 }

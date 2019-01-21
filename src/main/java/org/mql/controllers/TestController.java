@@ -12,6 +12,7 @@ import org.mql.models.Formation;
 import org.mql.models.Member;
 import org.mql.models.Module;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -88,6 +89,16 @@ public class TestController {
 		
 		return "Saved";
 	}
+	
+	@GetMapping(path = "/add2")
+	public @ResponseBody String addNewMember() {
+		Member member = new Member("Soumaya", "Bahij", "soumaya@gmail.com", "");
+		member.setPassword(new BCryptPasswordEncoder(10).encode("soumaya"));
+		memberRepository.save(member);
+		return "added!";
+	}
+	
+	
 
 	@GetMapping("/")
 	public String home() {
@@ -104,11 +115,7 @@ public class TestController {
 		return "main_views/contacts";
 	}
 	
-	@GetMapping("/login")
-	public String login() {
-		return "main_views/login";
-	}
-	
+
 	@GetMapping("/register")
 	public String register() {
 		return "main_views/register";
