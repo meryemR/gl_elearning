@@ -20,7 +20,9 @@
 				<a href="/"><img src="/img/logo.png" width="149" height="42" data-retina="true" alt=""></a>
 			</figure>
 			<form th:action="@{/login}" th:object="${member}" method="POST">
-				<div th:if="${flash!=null}">ERREUR</div>
+				<div th:if="${flash!=null}" th:text="${flash}" id="pass-info" class="weakpass">
+					Erreur
+				</div>
 				<div class="divider">
 					<span></span>
 				</div>
