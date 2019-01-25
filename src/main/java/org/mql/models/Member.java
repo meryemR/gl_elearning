@@ -21,6 +21,7 @@ import javax.persistence.Table;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.jackson2.SimpleGrantedAuthorityMixin;
 
 @Entity
 @Table(name = "member")
@@ -55,10 +56,15 @@ public class Member implements UserDetails{
 
 	
 	// roles for security :
-	@OneToOne
-	@JoinColumn(name = "role_id")
-	private Role role;
-	//
+	@ManyToMany(cascade = {CascadeType.MERGE,CascadeType.PERSIST},fetch = FetchType.EAGER)
+    @JoinTable( 
+        name = "members_roles", 
+        joinColumns = @JoinColumn(
+          name = "member_id", referencedColumnName = "memb_id"), 
+        inverseJoinColumns = @JoinColumn(
+          name = "role_id", referencedColumnName = "id")) 
+    private Collection<Role> roles;
+	////////////////
 
 	public Member() {
 
@@ -161,7 +167,9 @@ public class Member implements UserDetails{
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		List<GrantedAuthority> authorities = new ArrayList<>();
-		authorities.add(new SimpleGrantedAuthority(role.getName()));
+		for (Role role : roles) {
+			authorities.add(new SimpleGrantedAuthority(role.getName()));
+		}
 		return authorities;
 	}
 	

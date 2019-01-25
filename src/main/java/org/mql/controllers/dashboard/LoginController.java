@@ -1,4 +1,4 @@
-package org.mql.controllers;
+package org.mql.controllers.dashboard;
 
 import javax.servlet.http.HttpServletRequest;
 
