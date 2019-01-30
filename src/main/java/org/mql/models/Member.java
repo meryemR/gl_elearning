@@ -17,6 +17,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -33,14 +36,19 @@ public class Member implements UserDetails{
 	private int id;
 
 	@Column(name = "firstName")
+	@NotEmpty
 	private String firstName;
 
+	@NotEmpty
 	@Column(name = "lastName")
 	private String lastName;
 
+	@NotEmpty
+	@Email
 	@Column(name = "email")
 	private String email;
 
+	@NotEmpty
 	@Column(name = "password")
 	private String password;
 
@@ -162,6 +170,13 @@ public class Member implements UserDetails{
 
 		}
 		teachedModules.add(module);
+	}
+	
+	public void addRole(Role role) {
+		if(roles == null) {
+			roles = new ArrayList<>();
+		}
+		roles.add(role);
 	}
 
 	@Override

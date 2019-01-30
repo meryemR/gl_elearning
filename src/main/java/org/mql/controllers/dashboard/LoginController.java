@@ -1,5 +1,7 @@
 package org.mql.controllers.dashboard;
 
+import java.security.Principal;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.logging.log4j.LogManager;
@@ -16,7 +18,10 @@ public class LoginController {
 
 	
 	@GetMapping("/login")
-	public String login(Model model,HttpServletRequest request) {
+	public String login(Model model,HttpServletRequest request,Principal principal) {
+		if(principal!=null) {
+			return "redirect:/dashboard/";
+		}
 		model.addAttribute("member",new Member());
 		
 		try {
