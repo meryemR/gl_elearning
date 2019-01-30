@@ -35,7 +35,7 @@ public class DashFormationController {
 	
 	@GetMapping("/")
 	public String mainPage() {
-		return "redirect:/dashboard/formation/";
+		return "dashboard/index";
 	}
 	
 	@GetMapping("/formation")

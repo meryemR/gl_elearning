@@ -6,6 +6,7 @@ import org.mql.services.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -60,17 +61,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	}
 	
 	public AuthenticationSuccessHandler loginSuccessHandler() {
-		logger.info("success");
-		System.out.println("this");
 		return	(request, response, authentication) -> response.sendRedirect("/dashboard/");
 	}
 	
 	public AuthenticationFailureHandler loginFailureHandler() {
-		logger.warn("failed");
 		return	(request, response, authentication) -> {
 			request.getSession().setAttribute("flash", "Email et/ou mot de passe incorrect, veuillez réssayer!");
 
 			response.sendRedirect("/login");
 		};
+	}
+	
+	@Bean
+	@Override
+	protected AuthenticationManager authenticationManager() throws Exception {
+		// TODO Auto-generated method stub
+		return super.authenticationManager();
 	}
 }

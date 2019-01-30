@@ -90,12 +90,9 @@ public class TestController {
 		return "Saved";
 	}
 	
-	@GetMapping(path = "/add2")
-	public @ResponseBody String addNewMember() {
-		Member member = new Member("Soumaya", "Bahij", "soumaya@gmail.com", "");
-		member.setPassword(new BCryptPasswordEncoder(10).encode("soumaya"));
-		memberRepository.save(member);
-		return "added!";
+	@GetMapping(path = "/security")
+	public String addNewMember() {
+		return "dashboard/index";
 	}
 	
 	

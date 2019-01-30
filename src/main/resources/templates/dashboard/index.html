@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="ISO-8859-1">
+<title>Testing Principals</title>
+</head>
+<body>
+	<div sec:authorize="hasRole('STUDENT')">Text visible to Student.</div>
+	<div sec:authorize="hasRole('ADMIN')">Text visible to Admin.</div>
+	<div sec:authorize="hasRole('TEACHER')">Text visible to Teacher.</div>
+	<div sec:authorize="hasRole('RESPONSABLE')">Text visible to Responsable.</div>
+	<div sec:authorize="isAuthenticated()">Text visible only to
+		authenticated users.</div>
+	Authenticated username:
+	<div sec:authentication="name"></div>
+</body>
+</html>
