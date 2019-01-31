@@ -38,7 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/add2","/css/**","/js/**","/fonts/**","/img/**","/layerslider/**","/scss/**","/vendor/**");
+		web.ignoring().antMatchers("/css/**","/js/**","/fonts/**","/img/**","/layerslider/**","/scss/**","/vendor/**");
 	}
 	
 	
@@ -46,7 +46,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 		.authorizeRequests()
-			.antMatchers("/dashboard/**","/stream/**").hasRole("STUDENT")
+			.antMatchers("/dashboard/","/stream/**").hasAnyRole("STUDENT","TEACHER","RESPONSABLE","ADMIN")
+			.antMatchers("/dashboard/formation/**").hasAnyRole("RESPONSABLE")
+			.antMatchers("/dashboard/stream/**").hasAnyRole("TEACHER")
 			.and()
 		.formLogin()
 			.loginPage("/login")

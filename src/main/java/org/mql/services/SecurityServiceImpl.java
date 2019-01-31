@@ -1,7 +1,6 @@
 package org.mql.services;
 
 
-import org.mql.config.SecurityConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,15 +15,11 @@ public class SecurityServiceImpl implements SecurityService{
 	
 	Logger logger = LoggerFactory.getLogger(SecurityServiceImpl.class);
 
-
-	
 	@Autowired
 	AuthenticationManager authenticationManager;
 	
 	@Autowired
 	MemberService memberService;
-	
-	
 	
 	@Override
 	public String findLoggedInUsername() {

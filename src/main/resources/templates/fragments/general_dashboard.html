@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="head">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -51,13 +51,14 @@
             <span class="nav-link-text">Dashboard</span>
           </a>
         </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Add listing">
+        
+        <li sec:authorize="hasRole('RESPONSABLE')" class="nav-item" data-toggle="tooltip" data-placement="right" title="Add listing">
           <a class="nav-link" th:href="@{/dashboard/formation/add}">
             <i class="fa fa-fw fa-plus-circle"></i>
             <span class="nav-link-text">Ajouter une Formation</span>
           </a>
         </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Add listing">
+        <li sec:authorize="hasRole('TEACHER')" class="nav-item" data-toggle="tooltip" data-placement="right" title="Add listing">
           <a class="nav-link" th:href="@{/dashboard/stream/add}">
             <i class="fa fa-fw fa-youtube-square"></i>
             <span class="nav-link-text">Ajouter un Live</span>

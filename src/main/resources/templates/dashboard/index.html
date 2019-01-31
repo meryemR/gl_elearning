@@ -13,5 +13,9 @@
 		authenticated users.</div>
 	Authenticated username:
 	<div sec:authentication="name"></div>
+	
+	<form th:action="@{/logout}" method="POST">
+            	<button type="submit"  value="Se Déco">Se Déconnecter</button>
+    </form>
 </body>
 </html>
