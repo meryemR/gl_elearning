@@ -12,6 +12,7 @@ import org.mql.models.Member;
 import org.mql.models.Module;
 import org.mql.models.Streaming;
 import org.mql.services.MemberService;
+import org.mql.services.StreamingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,6 +35,9 @@ public class StreamingController {
 
 	@Autowired
 	MemberService memberService;
+	
+	@Autowired
+	StreamingService streamingService;
 	
 	@GetMapping("dashboard/stream/add")
 	public String showStreamForm(Model model,Principal principal) {
@@ -71,16 +75,18 @@ public class StreamingController {
 		
 		// persister les donnees à la BD
 		moduleRepository.saveAndFlush(module);
-		
-		
 		return "redirect:/stream/"+streamingRepository.findFirstByOrderByIdDesc().getId();
-		
 	}
 	
 	@GetMapping("/stream/{id}")
-	public  String showStream(@PathVariable int id ,Model model) {
+	public  String showStream(@PathVariable int id ,Model model,Principal principal) {
 		// On recupere le stream ainsi que ses attributs 
-		Streaming streaming = streamingRepository.findById(id).get();
+		Member member = memberService.findByEmail(principal.getName());
+		Streaming streaming = streamingService.findById(id);
+		boolean status = streamingService.isAllowed(streaming, member);
+		if(!status) {
+			return "error/403"; 
+		}
 		model.addAttribute("streaming",streaming);
 		//System.out.println(streaming.getUrl());
 		//return "success "+id;

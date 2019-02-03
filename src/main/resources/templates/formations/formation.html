@@ -65,7 +65,10 @@
 											<ul>
 												<li th:text="'Description : '+${module.description}"></li>
 												<li th:text="'Type : '+${module.type}"></li>
-												<li th:text="'Enseignant : '+${module.teacher}"></li>
+												<li>
+													Enseignant :<a th:href="@{|/teacher/${module.teacher.id}|}" th:text="' ' + ${module.teacher}"></a>
+												</li>							
+					
 											</ul>
 											</div>
 										</div>
