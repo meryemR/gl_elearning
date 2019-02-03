@@ -1,5 +1,6 @@
 package org.mql.controllers;
 
+import java.security.Principal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -7,8 +8,10 @@ import java.util.List;
 import org.mql.dao.MemberRepository;
 import org.mql.dao.ModuleRepository;
 import org.mql.dao.StreamingRepository;
+import org.mql.models.Member;
 import org.mql.models.Module;
 import org.mql.models.Streaming;
+import org.mql.services.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,15 +32,18 @@ public class StreamingController {
 	@Autowired
 	MemberRepository memberRepository;
 
+	@Autowired
+	MemberService memberService;
 	
 	@GetMapping("dashboard/stream/add")
-	public String showStreamForm(Model model) {
+	public String showStreamForm(Model model,Principal principal) {
 		//Recuperer l'ID de L'enseignant Connecter par le biais des variables de sessions
 		
 		//Recuperer tt Les modules enseigner par cet enseignant
 		// à ameliorer
-		List<Module> modules = moduleRepository.findAll();
 		
+		Member member = memberService.findByEmail(principal.getName());
+		List<Module> modules =  member.getTeachedModules();
 		/*cette methode va etre utiliser apres a la place de la methode presedente  
 		*List<Module> modules = memberRepository.findById(1).get().getTeachedModules();
 		*/

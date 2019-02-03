@@ -34,61 +34,6 @@ public class TestController {
 	@Autowired
 	TimingRepository timingRepository;
 
-	@GetMapping(path = "/add")
-	public @ResponseBody String addNewUser() {
-		List<Formation> formations= new Vector<>();
-		Formation formation1 = new Formation("JAVA");
-		formation1.setCategory("Enterprise Edition Programming Lanugages");
-		formation1.setCreatingDate("15/03/2014");
-		
-		Formation formation2 = new Formation("C++");		
-		formation2.setCategory("C++ Games Dev");
-		formation2.setCreatingDate("05/04/2017");
-		
-		
-		Formation formation3 = new Formation("C#");		
-		formation3.setCategory("Microsoft Programming Languages");
-		formation3.setCreatingDate("10/11/2018");
-		
-		formations.add(formation1);
-		formations.add(formation2);
-		formations.add(formation3);
-		
-		
-		List<Member> members = new Vector<>();
-		Member member = new Member();
-		member.setFirstName("Khalid");
-		member.setLastName("Chahboune");
-		member.setEmail("Khalidqqr@gmail.com");
-		
-		Member member0 = new Member();
-		member0.setFirstName("Chaimae");
-		member0.setLastName("Zarhouni");
-		member0.setEmail("Chaimaeqqr@gmail.com");
-		members.add(member0);
-		members.add(member);
-		
-		members.add(new Member("Hicham","Haydar"));
-		members.add(new Member("Mohamed","Zaraoui"));
-		members.add(new Member("Brakani","Karim"));
-		members.add(new Member("Elhaddady","Youssef"));
-		
-		
-		// ajouter certains modules pour le test
-		List<Module> modules = new Vector<>();
-		modules.add(new Module("Java", new Member("khalid")));
-		modules.add(new Module("Oracle", new Member("omar")));
-		modules.add(new Module("XML", new Member("hicham")));
-		modules.add(new Module("TEC", new Member("Douhi")));
-		modules.add(new Module("Génie Logiciel", new Member("Mouad")));
-		
-		moduleRepository.saveAll(modules);
-		
-		memberRepository.saveAll(members);
-		formationRepository.saveAll(formations);
-		
-		return "Saved";
-	}
 	
 	@GetMapping(path = "/security")
 	public String addNewMember() {
@@ -118,11 +63,6 @@ public class TestController {
 		return "main_views/register";
 	}
 	
-//	@GetMapping("/stream")
-//	public String stream() {
-//		return "streamVideo";
-//	}
-
 	@GetMapping(path = "/allMembers")
 	public @ResponseBody String getAllMembers() {
 		return memberRepository.findAll().toString();
@@ -154,5 +94,6 @@ public class TestController {
 		formationRepository.deleteAll();
 		return "deleted";
 	}
+	
 
 }

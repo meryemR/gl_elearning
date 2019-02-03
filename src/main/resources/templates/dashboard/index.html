@@ -1,21 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
-<meta charset="ISO-8859-1">
-<title>Testing Principals</title>
-</head>
-<body>
-	<div sec:authorize="hasRole('STUDENT')">Text visible to Student.</div>
-	<div sec:authorize="hasRole('ADMIN')">Text visible to Admin.</div>
-	<div sec:authorize="hasRole('TEACHER')">Text visible to Teacher.</div>
-	<div sec:authorize="hasRole('RESPONSABLE')">Text visible to Responsable.</div>
-	<div sec:authorize="isAuthenticated()">Text visible only to
-		authenticated users.</div>
-	Authenticated username:
-	<div sec:authentication="name"></div>
-	
-	<form th:action="@{/logout}" method="POST">
-            	<button type="submit"  value="Se DÈco">Se DÈconnecter</button>
-    </form>
+
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<div th:replace="fragments/general_dashboard.html :: head"></div>
+
+<body class="fixed-nav sticky-footer" id="page-top">
+	<!-- Navigation-->
+	<div th:replace="fragments/general_dashboard :: dashboard_nav"></div>
+	<!-- /Navigation-->
+	<div class="content-wrapper">
+		<div class="container-fluid">
+			<!-- Breadcrumbs-->
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+				<li class="breadcrumb-item active">Home</li>
+			</ol>
+			<div class="box_general">
+				<div class="header_box">
+					<h2 class="d-inline-block">Welcome [[${member.firstName}]]</h2>
+				</div>
+				<div class="list_general">
+					<ul>
+						<li>
+							<figure>
+								<img
+									th:src="@{${'https://via.placeholder.com/70/212529/fff?text='+#strings.substring(member.firstName,0,1)}}"
+									alt="">
+							</figure>
+							<h4> 
+								<i sec:authorize="hasRole('STUDENT')" class="approved">Etudiant</i> 
+								<i sec:authorize="hasRole('TEACHER')" class="pending">Enseignant</i>
+								<i sec:authorize="hasRole('RESPONSABLE')" class="cancel">Responsable</i>
+								<i sec:authorize="hasRole('ADMIN')" class="cancel">Admin</i>
+							</h4>
+							
+							<ul class="course_list">
+								<li th:inline="text"><strong>Pr√©nom :</strong>
+									[[${member.firstName}]]</li>
+								<li th:inline="text"><strong>Nom :</strong>
+									[[${member.lastName}]]</li>
+								<li th:inline="text"><strong>Email :</strong>
+									[[${member.email}]]</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<!-- /box_general-->
+
+			<!-- added -->
+
+			<div class="row">
+				<div class="col-md-12">
+					<div class="box_general padding_bottom">
+						<div class="header_box version_2">
+							<h2>
+								<i class="fa fa-envelope"></i>Informations G√©n√©rales :
+							</h2>
+						</div>						
+						<ul class="course_list">
+								<li th:inline="text"><strong>Formations suivis :</strong> 25 [[${member.firstName}]]</li>
+								<li th:inline="text"><strong>Modules :</strong> 30 [[${member.lastName}]]</li>
+								<li th:inline="text"><strong>Lives disponibles:</strong> 22 [[${member.email}]]</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<!-- /added -->
+		</div>
+		<!-- /container-fluid-->
+	</div>
+	<!-- /container-wrapper-->
+	<div th:replace="fragments/general_dashboard :: dashboard_footer"></div>
+	<!-- Scroll to Top Button-->
+	<a class="scroll-to-top rounded" href="#page-top"> <i
+		class="fa fa-angle-up"></i>
+	</a>
+	<!-- Logout Modal-->
+	<div th:replace="fragments/general_dashboard :: logout_modal"></div>
+
+
+	<!-- SCRIPTS -->
+
+	<!-- Bootstrap core JavaScript-->
+	<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+	<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+	<!-- Core plugin JavaScript-->
+	<script th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>
+	<!-- Page level plugin JavaScript-->
+	<script th:src="@{/vendor/chart.js/Chart.min.js}"></script>
+	<script th:src="@{/vendor/datatables/jquery.dataTables.js}"></script>
+	<script th:src="@{/vendor/datatables/dataTables.bootstrap4.js}"></script>
+	<script th:src="@{/vendor/jquery.selectbox-0.2.js}"></script>
+	<script th:src="@{/vendor/retina-replace.min.js}"></script>
+	<script th:src="@{/vendor/jquery.magnific-popup.min.js}"></script>
+	<!-- Custom scripts for all pages-->
+	<script th:src="@{/js/admin.js}"></script>
+
+	<!-- SCRIPTS END-->
 </body>
 </html>

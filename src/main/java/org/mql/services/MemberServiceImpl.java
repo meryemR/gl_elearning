@@ -1,5 +1,7 @@
 package org.mql.services;
 
+import java.util.List;
+
 import org.mql.dao.MemberRepository;
 import org.mql.models.Member;
 import org.mql.models.Role;
@@ -61,5 +63,11 @@ public class MemberServiceImpl implements MemberService{
 	public boolean setRole(Member member, Role role) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public List<Member> findTeachers() {
+		Role role = roleService.findRoleByName(RoleService.TEACHER);
+		return repository.findByRolesContaining(role);
 	}
 }
