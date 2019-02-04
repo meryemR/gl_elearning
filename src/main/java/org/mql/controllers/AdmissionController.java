@@ -47,6 +47,7 @@ public class AdmissionController {
 	public String FormulaireAdmission(Model model, Principal principal) {
 		Member member = memberService.findByEmail(principal.getName());
 		model.addAttribute("member", member);
+		System.out.println(member);
 		model.addAttribute("admission", new Admission());
 		return "admission/addAdmission";
 	}
@@ -56,14 +57,25 @@ public class AdmissionController {
 	public String sendAdmission(Model model, Admission admission, Member member) throws MessagingException {
 		member = memberRepository.findByEmail(member.getEmail());
 		admission.setMember(member);
-		admissionRepository.save(admission); // TEST if there is possiblity to delete
 		memberRepository.save(member);
+		admissionRepository.save(admission); // TEST if there is possiblity to delete
+		/*
 		String htmlContent = "<body>\r\n" + "<div align=\"center\" style=\"background-color:lightblue\">\r\n"
-				+ " <h3>demande d'admission</h3>" + " <p>nom :" + member.getFirstName() + "</p>\r\n" + " <p>prenom :"
+				+ " <h3>Demande d'admission</h3>" + " <p>nom :" + member.getFirstName() + "</p>\r\n" + " <p>prenom :"
 				+ member.getLastName() + "</p>\r\n" + " <p>email :" + member.getEmail() + "</p>\r\n"
 				+ " <p> mon domaine :" + admission.getDomaine() + "</p>\r\n" + " <p> mes motivations :"
 				+ admission.getMotivation() + "</label></p>\r\n"
 				+ "<a href=\"http://localhost:8080//messages\">cliquer ici </a>" + "</div>" + "</body>\r\n" + "</html>";
+		
+		*/
+		String htmlContent = "<body  style=\"color: white; font-family: Helvetica, Sans-Serif;\">\r\n" + "<div style=\"background-color:rgb(36, 119, 192);  padding:10px;\">\r\n"
+		        + " <h1 align=\"center\">Demande d'admission</h1>" + " <p><strong>Nom :</strong>" + member.getFirstName() + "</p>\r\n" + " <p> <strong>Prénom : </strong>"
+		        + member.getLastName() + "</p>\r\n" + " <p><strong>Email : </strong>" + member.getEmail() + "</p>\r\n"
+		        + " <p><strong> Domaine :</strong>" + admission.getDomaine() + "</p>\r\n" + " <p> <strong>Motivations :</strong>"
+		        + admission.getMotivation() + "</label></p>\r\n"
+		        + "<a style=\"color: rgb(255, 210, 210)\" href=\"http://localhost:8080/dashboard/demands\">Liste des demandes</a>" + "</div>" + "</body>\r\n" + "</html>";
+
+		
 		mail.send("master.qualite.logiciel2019@gmail.com", member.getEmail(), "demande d'admission", htmlContent);
 		return "redirect:/dashboard/";
 	}
