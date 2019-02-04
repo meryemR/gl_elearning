@@ -48,4 +48,9 @@ public class FormationServiceImpl implements FormationService{
 	public List<Formation> findByResponsable(Member member) {
 		return formationRepository.findAllByCreatorOrderByIdDesc(member);
 	}
+	
+	@Override
+	public List<Formation> findByFollower(Member member) {
+		return member.getFollowedFormations();
+	}
 }

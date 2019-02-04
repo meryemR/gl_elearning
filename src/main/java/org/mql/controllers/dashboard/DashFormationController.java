@@ -104,4 +104,13 @@ public class DashFormationController {
 		return "redirect:/dashboard/formation/";
 	}
 	
+	// Get the authetificated student followed Formations
+	@GetMapping("/followedFormation")
+	public String getFollowedFormations(Model model,Principal principal) {
+		Member member = memberService.findByEmail(principal.getName());
+		List<Formation> formations = formationService.findByFollower(member);
+		model.addAttribute("formations", formations);
+		return "dashboard/followedFormations";
+	}
+	
 }

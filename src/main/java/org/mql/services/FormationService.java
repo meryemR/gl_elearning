@@ -11,5 +11,6 @@ public interface FormationService {
 	boolean containsMember(Formation formation,Member member);
 	Formation save(Formation formation);
 	List<Formation> findByResponsable(Member member);
+	List<Formation> findByFollower(Member member);
 	List<Formation> findAll();
 }
