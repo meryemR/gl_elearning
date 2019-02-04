@@ -73,7 +73,11 @@ public class Member implements UserDetails{
           name = "role_id", referencedColumnName = "id")) 
     private Collection<Role> roles;
 	////////////////
-
+	
+    /*code hajar*************************************************************************************/
+	@OneToOne(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+	private Admission admission ;
+    // 
 	public Member() {
 
 	}
