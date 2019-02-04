@@ -25,7 +25,7 @@ public class StreamingServiceImpl implements StreamingService{
 	
 	@Override
 	public boolean isAllowed(Streaming streaming, Member member) {
-		if(streaming.getModule().getFormation().getMembers().contains(member)) 
+		if(streaming.getModule().getFormation().getMembers().contains(member) || streaming.getModule().getTeacher().equals(member)) 
 			return true;
 		return false;
 	}
