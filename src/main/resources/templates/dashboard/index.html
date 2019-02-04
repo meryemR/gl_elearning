@@ -14,11 +14,11 @@
 			<!-- Breadcrumbs-->
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-				<li class="breadcrumb-item active">Home</li>
+				<li class="breadcrumb-item active">Accueil</li>
 			</ol>
 			<div class="box_general">
 				<div class="header_box">
-					<h2 class="d-inline-block">Welcome [[${member.firstName}]]</h2>
+					<h2 class="d-inline-block">Bienvenue [[${member.firstName}]]</h2>
 				</div>
 				<div class="list_general">
 					<ul>
@@ -50,26 +50,7 @@
 
 			<!-- /box_general-->
 
-			<!-- added -->
-
-			<div class="row">
-				<div class="col-md-12">
-					<div class="box_general padding_bottom">
-						<div class="header_box version_2">
-							<h2>
-								<i class="fa fa-envelope"></i>Informations Générales :
-							</h2>
-						</div>						
-						<ul class="course_list">
-								<li th:inline="text"><strong>Formations suivis :</strong> 25 [[${member.firstName}]]</li>
-								<li th:inline="text"><strong>Modules :</strong> 30 [[${member.lastName}]]</li>
-								<li th:inline="text"><strong>Lives disponibles:</strong> 22 [[${member.email}]]</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-
-			<!-- /added -->
+		<a th:href="@{/}"><i class="fa fa-fw fa-chevron-circle-left"></i> Retourner à l'accueil de la platforme</a>
 		</div>
 		<!-- /container-fluid-->
 	</div>

@@ -57,6 +57,15 @@
             <span class="nav-link-text">Liste des formations</span>
           </a>
         </li>
+        
+        <li th:if="${#authorization.expression('hasRole(''ROLE_STUDENT'')') and #authorization.expression('!hasRole(''ROLE_TEACHER'')') }" class="nav-item" data-toggle="tooltip" data-placement="right" title="Add listing">
+          <a class="nav-link" th:href="@{/admission}">
+            <i class="fa fa-fw fa-graduation-cap"></i>
+            <span class="nav-link-text">Devenir Enseignant</span>
+          </a>
+        </li>
+        
+        
         <li sec:authorize="hasRole('RESPONSABLE')" class="nav-item" data-toggle="tooltip" data-placement="right" title="Add listing">
           <a class="nav-link" th:href="@{/dashboard/formation/add}">
             <i class="fa fa-fw fa-plus-circle"></i>
@@ -67,6 +76,12 @@
           <a class="nav-link" th:href="@{/dashboard/stream/add}">
             <i class="fa fa-fw fa-youtube-square"></i>
             <span class="nav-link-text">Ajouter un Live</span>
+          </a>
+        </li>
+        <li sec:authorize="hasRole('ADMIN')" class="nav-item" data-toggle="tooltip" data-placement="right" title="Add listing">
+          <a class="nav-link" th:href="@{/dashboard/demands}">
+            <i class="fa fa-fw fa-check-square"></i>
+            <span class="nav-link-text">Demandes d'admission</span>
           </a>
         </li>
       </ul>
