@@ -98,12 +98,12 @@ public class AdmissionController {
 		String htmlContent = "<body>\r\n" + "<div align=\"center\" style=\"background-color:lightblue\">\r\n"
 				+ " <h3>demande d'admission acceptee </h3>" + " <p> Bonjour, " + member.getFirstName() + " "
 				+ member.getLastName()
-				+ " votre demande d'etre enseignant dans notre platforme est acceptee par l'administrateur, "
-				+ "consulter votre profil comme etant enseignat : </p>" + "<a href=>cliquer ici </a>" + "</body>\r\n"
+				+ " votre demande d'etre enseignant dans notre platforme est acceptee par l'administrateur. "
+				+ "</p></body>\r\n"
 				+ "</html>";
 		mail.send(member.getEmail(), "master.qualite.logiciel2019@gmail.com", "demande d'admission acceptee",
 				htmlContent);
-		return "redirect:/dashboard/demandes";
+		return "redirect:/dashboard/demands";
 	}
 
 	@PostMapping(value = "/refus")
@@ -114,13 +114,13 @@ public class AdmissionController {
 		String htmlContent = "<body>\r\n" + "<div align=\"center\" style=\"background-color:lightblue\">\r\n"
 				+ " <h3>demande d'admission refusee </h3>" + " <p> Bonjour, " + member.getFirstName() + " "
 				+ member.getLastName()
-				+ " votre demande d'etre enseignant dans notre platforme est refusee par l'administrateur, "
-				+ "pour une raison d'administration. pour consulter votre compte :  </p>" + "<a href='localhost:8080/login'>cliquer ici </a>"
+				+ " votre demande d'etre enseignant dans notre platforme est refusee par l'administrateur. "
+				+ "</p>"
 				+ "</body>\r\n" + "</html>";
 		mail.send(member.getEmail(), "master.qualite.logiciel2019@gmail.com", "demande d'admission refusee",
 				htmlContent);
 
-		return "redirect:/dashboard/demandes";
+		return "redirect:/dashboard/demands";
 	}
 
 }
