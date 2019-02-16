@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head  th:fragment="head">
 	<meta charset="utf-8">
@@ -24,10 +24,9 @@
 
 	<!-- SPECIFIC CSS -->
 	<link th:href="@{/layerslider/css/layerslider.css}" rel="stylesheet">
-	<link th:href="@{css/skins/square/grey.css}" rel="stylesheet">
-	<link th:href="@{css/wizard.css}" rel="stylesheet">
+	
 	<!-- SPECIFIC CSS -->
-	<link th:href="@{/css/blog.css}" rel="stylesheet">
+	<link href="@{/css/blog.css}" rel="stylesheet">
 
 	<!-- YOUR CUSTOM CSS -->
 	<link th:href="@{/css/custom.css}" rel="stylesheet">
@@ -46,13 +45,8 @@
 				<a th:href="@{/}"><img th:src="@{/img/logo_2x.png}" width="149" height="42" data-retina="complete" alt=""></a>
 			</div>
 			<ul id="top_menu">
-				<li><a th:href="@{#0}" class="search-overlay-menu-btn">Search</a></li>
-				<li class="hidden_tablet" sec:authorize="isAuthenticated() == false">
-					<a th:href="@{/login}" class="btn_1 rounded">LOGIN</a>
-				</li>
-				<li class="hidden_tablet" sec:authorize="isAuthenticated()">
-					<a th:href="@{/dashboard/}" class="btn_1 rounded">DASHBOARD</a>
-				</li>
+				<li><a th:href="@{#0}" class="search-overlay-menu-btn">Recherche</a></li>
+				<li class="hidden_tablet"><a th:href="@{/login}" class="btn_1 rounded">Se connecter</a></li>
 			</ul>
 			<!-- /top_menu -->
 			<a th:href="@{#menu}" class="btn_mobile">
@@ -71,7 +65,7 @@
 					</li>
 					<li><span><a th:href="@{/articles}">Articles</a></span>
 					</li>
-					<li><span><a th:href="@{/contacts}">Contact Us</a></span>
+					<li><span><a th:href="@{/contacts}">Contact</a></span>
 					</li>
 
 				</ul>
@@ -95,10 +89,10 @@
 					<!-- first slide -->
 					<div class="ls-slide" data-ls="slidedelay: 5000; transition2d:85;">
 						<img th:src="@{/img/backhome.png}" class="ls-bg" alt="Slide background">
-						<h3 class="ls-l slide_typo" style="top: 47%; left: 50%;" data-ls="offsetxin:0;durationin:2000;delayin:1000;easingin:easeOutElastic;rotatexin:90;transformoriginin:50% bottom 0;offsetxout:0;rotatexout:90;transformoriginout:50% bottom 0;">Welcome
-							to <strong>MQL-ELEARNING</strong> Platform</h3>
+						<h3 class="ls-l slide_typo" style="top: 47%; left: 50%;" data-ls="offsetxin:0;durationin:2000;delayin:1000;easingin:easeOutElastic;rotatexin:90;transformoriginin:50% bottom 0;offsetxout:0;rotatexout:90;transformoriginout:50% bottom 0;">Bienvenue 
+							dans <strong>MQL-ELEARNING</strong> Platform</h3>
 						<p class="ls-l slide_typo_2" style="top:55%; left:50%;" data-ls="durationin:2000;delayin:1000;easingin:easeOutElastic;">
-							Increase your expertise in technology
+							Me former " Où je veux, quand je veux, comme je veux ! "
 						</p>
 						<a class="ls-l btn_1 rounded" style="top:65%; left:50%;white-space: nowrap;" data-ls="durationin:2000;delayin:1400;easingin:easeOutElastic;"
 						 th:href='@{courses-grid.html}'>Voir Plus</a>
@@ -111,13 +105,14 @@
 				<div class="container">
 					<ul>
 						<li><i class="pe-7s-study center"></i>
-							<h4>+20 Formations</h4><span>Explore a variety of fresh topics</span>
+							<h4>+20 Formations</h4><span>Explorez une variété de formations</span>
 						</li>
 						<li><i class="pe-7s-cup"></i>
-							<h4>Enseignants experimentés</h4><span>Find the right instructor for you</span>
+							<h4>Enseignants experimentés</h4><span>Trouvez le bon fomateur pour vous</span>
 						</li>
 						<li><i class="pe-7s-target"></i>
-							<h4>Focus on target</h4>
+							<h4>Tracer votre parcours </h4>
+							<span>Formation de qualité</span>
 						</li>
 					</ul>
 
@@ -139,9 +134,9 @@
 								</a>
 							</figure>
 							<div class="wrapper">
-								<small>Informatique</small>
-								<h3>Persius delenit has cu</h3>
-								<p>Id placerat tacimates definitionem sea, prima quidam vim no. Duo nobis persecuti cu.</p>
+								<small></small>
+								<h3></h3>
+								<p></p>
 							</div>
 							<ul>
 								<li></li>
@@ -160,8 +155,8 @@
 							</figure>
 							<div class="wrapper">
 								<small>Informatique</small>
-								<h3>Persius delenit has cu</h3>
-								<p>Id placerat tacimates definitionem sea, prima quidam vim no. Duo nobis persecuti cu.</p>
+								<h3></h3>
+								<p></p>
 							</div>
 							<ul>
 								<li></li>
@@ -180,8 +175,8 @@
 							</figure>
 							<div class="wrapper">
 								<small>Informatique</small>
-								<h3>Persius delenit has cu</h3>
-								<p>Id placerat tacimates definitionem sea, prima quidam vim no. Duo nobis persecuti cu.</p>
+								<h3></h3>
+								<p></p>
 							</div>
 							<ul>
 								<li></li>
@@ -200,8 +195,8 @@
 							</figure>
 							<div class="wrapper">
 								<small>Informatique</small>
-								<h3>Persius delenit has cu</h3>
-								<p>Id placerat tacimates definitionem sea, prima quidam vim no. Duo nobis persecuti cu.</p>
+								<h3></h3>
+								<p></p>
 							</div>
 							<ul>
 								<li></li>
@@ -220,8 +215,8 @@
 							</figure>
 							<div class="wrapper">
 								<small>Informatique</small>
-								<h3>Persius delenit has cu</h3>
-								<p>Id placerat tacimates definitionem sea, prima quidam vim no. Duo nobis persecuti cu.</p>
+								<h3></h3>
+								<p></p>
 							</div>
 							<ul>
 								<li></li>
@@ -240,8 +235,8 @@
 							</figure>
 							<div class="wrapper">
 								<small>Informatique</small>
-								<h3>Persius delenit has cu</h3>
-								<p>Id placerat tacimates definitionem sea, prima quidam vim no. Duo nobis persecuti cu.</p>
+								<h3></h3>
+								<p></p>
 							</div>
 							<ul>
 								<li></li>
@@ -264,7 +259,7 @@
 				<div class="main_title_2">
 					<span><em></em></span>
 					<h2>Les Categories</h2>
-					<p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p>
+					<p></p>
 				</div>
 				<div class="row">
 					<div class="col-lg-4 col-md-6 wow" data-wow-offset="150">
@@ -274,7 +269,7 @@
 								<img th:src="http://via.placeholder.com/800x533/ccc/fff/course_1.jpg" class="img-fluid" alt="">
 								<div class="info">
 									<small><i class="ti-layers"></i>2 Formations</small>
-									<h3>Arts and Humanities</h3>
+									<h3></h3>
 								</div>
 							</figure>
 						</a>
@@ -313,7 +308,7 @@
 								<img th:src="http://via.placeholder.com/800x533/ccc/fff/course_4.jpg" class="img-fluid" alt="">
 								<div class="info">
 									<small><i class="ti-layers"></i>5 Formations</small>
-									<h3>Science and Biology</h3>
+									<h3></h3>
 								</div>
 							</figure>
 						</a>
@@ -326,7 +321,7 @@
 								<img th:src="http://via.placeholder.com/800x533/ccc/fff/course_5.jpg" class="img-fluid" alt="">
 								<div class="info">
 									<small><i class="ti-layers"></i>7 Formations</small>
-									<h3>Law and Criminology</h3>
+									<h3></h3>
 								</div>
 							</figure>
 						</a>
@@ -366,8 +361,8 @@
 									<li>Mark Twain</li>
 									<li>20.11.2017</li>
 								</ul>
-								<h4>Pri oportere scribentur eu</h4>
-								<p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse ullum vidisse....</p>
+								<h4></h4>
+								<p></p>
 							</a>
 						</div>
 						<!-- /box_news -->
@@ -380,8 +375,8 @@
 									<li>Jhon Doe</li>
 									<li>20.11.2017</li>
 								</ul>
-								<h4>Duo eius postea suscipit ad</h4>
-								<p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse ullum vidisse....</p>
+								<h4></h4>
+								<p></p>
 							</a>
 						</div>
 						<!-- /box_news -->
@@ -394,8 +389,8 @@
 									<li>Luca Robinson</li>
 									<li>20.11.2017</li>
 								</ul>
-								<h4>Elitr mandamus cu has</h4>
-								<p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse ullum vidisse....</p>
+								<h4></h4>
+								<p></p>
 							</a>
 						</div>
 						<!-- /box_news -->
@@ -408,8 +403,8 @@
 									<li>Paula Rodrigez</li>
 									<li>20.11.2017</li>
 								</ul>
-								<h4>Id est adhuc ignota delenit</h4>
-								<p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse ullum vidisse....</p>
+								<h4></h4>
+								<p></p>
 							</a>
 						</div>
 						<!-- /box_news -->
@@ -427,10 +422,9 @@
 						<div class="block-reveal">
 							<div class="block-vertical"></div>
 							<div class="box_1">
-								<h3>Enjoy a great students community</h3>
-								<p>Ius cu tamquam persequeris, eu veniam apeirian platonem qui, id aliquip voluptatibus pri. Ei mea primis
-									ornatus disputationi. Menandri erroribus cu per, duo solet congue ut. </p>
-								<a th:href="#0" class="btn_1 rounded">Read more</a>
+								<h3></h3>
+								<p> </p>
+								<a th:href="#0" class="btn_1 rounded">lire la suite </a>
 							</div>
 						</div>
 					</div>
@@ -445,11 +439,10 @@
 				<div class="row">
 					<div class="col-lg-5 col-md-12 p-r-5">
 						<p><img th:src="@{/img/logo.png}" width="149" height="42" data-retina="true" alt=""></p>
-						<p>Mea nibh meis philosophia eu. Duis legimus efficiantur ea sea. Id placerat tacimates definitionem sea, prima
-							quidam vim no. Duo nobis persecuti cu. Nihil facilisi indoctum an vix, ut delectus expetendis vis.</p>
+						<p>Beneficier d'une  formation en ligne et de bonne qualité , </p>
 						<div class="follow_us">
 							<ul>
-								<li>Follow us</li>
+								<li>Suiver nous </li>
 								<li><a th:href="@{#0}"><i class="ti-facebook"></i></a></li>
 								<li><a th:href="@{#0}"><i class="ti-twitter-alt"></i></a></li>
 								<li><a th:href="@{#0}"><i class="ti-google"></i></a></li>
@@ -459,28 +452,28 @@
 						</div>
 					</div>
 					<div class="col-lg-3 col-md-6 ml-lg-auto">
-						<h5>Useful links</h5>
+						<h5>Lien</h5>
 						<ul class="links">
-							<li><a th:href="@{#}">About</a></li>
-							<li><a th:href="@{/login}">Login</a></li>
+							
+							<li><a th:href="@{/login}">Se connecter</a></li>
 							<li><a th:href="@{/register}">Inscription</a></li>
 							<li><a th:href="@{/articles}">Articles</a></li>
 							<li><a th:href="@{/contacts}">Contacts</a></li>
 						</ul>
 					</div>
 					<div class="col-lg-3 col-md-6">
-						<h5>Contact with Us</h5>
+						<h5>Contacter nous </h5>
 						<ul class="contacts">
 							<li><a th:href="@{tel://61280932400}"><i class="ti-mobile"></i> + 212 13 14 52 90</a></li>
 							<li><a th:href="@{mailto:info@udema.com}"><i class="ti-email"></i> info@mqlElearning.com</a></li>
 						</ul>
 						<div id="newsletter">
-							<h6>Newsletter</h6>
+							<h6>Message</h6>
 							<div id="message-newsletter"></div>
 							<form method="post" action="assets/newsletter.php" name="newsletter_form" id="newsletter_form">
 								<div class="form-group">
-									<input type="email" name="email_newsletter" id="email_newsletter" class="form-control" placeholder="Your email">
-									<input type="submit" value="Submit" id="submit-newsletter">
+									<input type="email" name="email_newsletter" id="email_newsletter" class="form-control" placeholder="Votre email">
+									<input type="submit" value="Envoyer" id="submit-newsletter">
 								</div>
 							</form>
 						</div>
@@ -491,8 +484,8 @@
 				<div class="row">
 					<div class="col-md-8">
 						<ul id="additional_links">
-							<li><a th:href="@{#0}">Terms and conditions</a></li>
-							<li><a th:href="@{#0}">Privacy</a></li>
+							<li><a th:href="@{#0}">MQL-Challengers</a></li>
+							<li><a th:href="@{#0}">Elearning</a></li>
 						</ul>
 					</div>
 					<div class="col-md-4">

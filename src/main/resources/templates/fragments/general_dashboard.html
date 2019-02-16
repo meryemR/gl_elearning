@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="head">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,6 +30,7 @@
   	<link th:href="@{/css/date_picker.css}" rel="stylesheet">
  	<!-- Your custom styles -->
   	<link th:href="@{/css/custom.css}" rel="stylesheet">
+<!-- 	Added by Omar -->
 	<link th:href="@{/css/icon_fonts/css/all_icons.min.css}" rel="stylesheet">
 	
 	
@@ -47,47 +48,69 @@
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
           <a class="nav-link" th:href="@{/dashboard/}">
             <i class="fa fa-fw fa-dashboard"></i>
-            <span class="nav-link-text">Accueil</span>
+            <span class="nav-link-text">Dashboard</span>
           </a>
         </li>
-        <li sec:authorize="hasRole('STUDENT')" class="nav-item" data-toggle="tooltip" data-placement="right" title="Add listing">
-          <a class="nav-link" th:href="@{/dashboard/followedFormation/}">
-              <i class="fa fa-fw fa-list"></i>
-              <span class="nav-link-text">Liste des formations</span>
-          </a>
-        </li>
-        <li sec:authorize="hasRole('RESPONSABLE')" class="nav-item" data-toggle="tooltip" data-placement="right" title="Add listing">
-          <a class="nav-link" th:href="@{/dashboard/formation/}">
-            <i class="fa fa-fw fa-list"></i>
-            <span class="nav-link-text">Liste des formations</span>
-          </a>
-        </li>
-        
-        <li th:if="${#authorization.expression('hasRole(''ROLE_STUDENT'')') and #authorization.expression('!hasRole(''ROLE_TEACHER'')') }" class="nav-item" data-toggle="tooltip" data-placement="right" title="Add listing">
-          <a class="nav-link" th:href="@{/admission}">
-            <i class="fa fa-fw fa-graduation-cap"></i>
-            <span class="nav-link-text">Devenir Enseignant</span>
-          </a>
-        </li>
-        
-        
-        <li sec:authorize="hasRole('RESPONSABLE')" class="nav-item" data-toggle="tooltip" data-placement="right" title="Add listing">
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Add listing">
           <a class="nav-link" th:href="@{/dashboard/formation/add}">
             <i class="fa fa-fw fa-plus-circle"></i>
             <span class="nav-link-text">Ajouter une Formation</span>
           </a>
         </li>
-        <li sec:authorize="hasRole('TEACHER')" class="nav-item" data-toggle="tooltip" data-placement="right" title="Add listing">
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Add listing">
           <a class="nav-link" th:href="@{/dashboard/stream/add}">
             <i class="fa fa-fw fa-youtube-square"></i>
             <span class="nav-link-text">Ajouter un Live</span>
           </a>
         </li>
-        <li sec:authorize="hasRole('ADMIN')" class="nav-item" data-toggle="tooltip" data-placement="right" title="Add listing">
-          <a class="nav-link" th:href="@{/dashboard/demands}">
-            <i class="fa fa-fw fa-check-square"></i>
-            <span class="nav-link-text">Demandes d'admission</span>
+		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Messages">
+          <a class="nav-link" th:href="@{#}">
+            <i class="fa fa-fw fa-envelope-open"></i>
+            <span class="nav-link-text">Messages</span>
           </a>
+        </li>
+		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Bookings">
+          <a class="nav-link" th:href="@{#}">
+            <i class="fa fa-fw fa-archive"></i>
+            <span class="nav-link-text">Cours <span class="badge badge-pill badge-primary"></span></span>
+          </a>
+        </li>
+		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Reviews">
+          <a class="nav-link" th:href="@{#}">
+            <i class="fa fa-fw fa-star"></i>
+            <span class="nav-link-text">Avis</span>
+          </a>
+        </li>
+		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Bookmarks">
+
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="My profile">
+          <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseProfile" data-parent="#exampleAccordion">
+            <i class="fa fa-fw fa-wrench"></i>
+            <span class="nav-link-text">Profile</span>
+          </a>
+          <ul class="sidenav-second-level collapse" id="collapseProfile">
+            <li>
+              <a th:href="@{#}">Profile utilisateur</a>
+            </li>
+			<li>
+              <a th:href="@{#}">Profile d'enseignant</a>
+            </li>
+          </ul>
+        </li>
+		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+          <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
+            <i class="fa fa-fw fa-gear"></i>
+            <span class="nav-link-text">Components</span>
+          </a>
+          <ul class="sidenav-second-level collapse" id="collapseComponents">
+            <li>
+              <a th:href="@{#}">Graphe</a>
+            </li>
+			<li>
+              <a th:href="@{#}">Tableau</a>
+            </li>
+          </ul>
         </li>
       </ul>
       <ul class="navbar-nav sidenav-toggler">
@@ -102,31 +125,31 @@
           <a class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-fw fa-envelope"></i>
             <span class="d-lg-none">Messages
-              <span class="badge badge-pill badge-primary">12 New</span>
+              <span class="badge badge-pill badge-primary">12 Nouveau</span>
             </span>
             <span class="indicator text-primary d-none d-lg-block">
               <i class="fa fa-fw fa-circle"></i>
             </span>
           </a>
           <div class="dropdown-menu" aria-labelledby="messagesDropdown">
-            <h6 class="dropdown-header">New Messages:</h6>
+            <h6 class="dropdown-header">Nouveau Messages:</h6>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">
-              <strong>David Miller</strong>
+              <strong>Meryem</strong>
               <span class="small float-right text-muted">11:21 AM</span>
-              <div class="dropdown-message small">Hey there! This new version of SB Admin is pretty awesome! These messages clip off when they reach the end of the box so they don't overflow over to the sides!</div>
+              <div class="dropdown-message small"></div>
             </a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">
               <strong>Jane Smith</strong>
               <span class="small float-right text-muted">11:21 AM</span>
-              <div class="dropdown-message small">I was wondering if you could meet for an appointment at 3:00 instead of 4:00. Thanks!</div>
+              <div class="dropdown-message small"></div>
             </a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">
               <strong>John Doe</strong>
               <span class="small float-right text-muted">11:21 AM</span>
-              <div class="dropdown-message small">I've sent the final files over to you for review. When you're able to sign off of them let me know and we can discuss distribution.</div>
+              <div class="dropdown-message small"></div>
             </a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item small" href="#">View all messages</a>
@@ -142,43 +165,43 @@
               <i class="fa fa-fw fa-circle"></i>
             </span>
           </a>
-          <div class="dropdown-menu" aria-labelledby="alertsDropdown">
-            <h6 class="dropdown-header">New Alerts:</h6>
+          <div class="dropdown-menu" aria-labelledby="alertsDropdown" >
+            <h6 class="dropdown-header">Nouvelle alerte:</h6>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">
               <span class="text-success">
                 <strong>
-                  <i class="fa fa-long-arrow-up fa-fw"></i>Status Update</strong>
+                  <i class="fa fa-long-arrow-up fa-fw"></i></strong>
               </span>
               <span class="small float-right text-muted">11:21 AM</span>
-              <div class="dropdown-message small">This is an automated server response message. All systems are online.</div>
+              <div class="dropdown-message small"></div>
             </a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">
               <span class="text-danger">
                 <strong>
-                  <i class="fa fa-long-arrow-down fa-fw"></i>Status Update</strong>
+                  <i class="fa fa-long-arrow-down fa-fw"></i></strong>
               </span>
               <span class="small float-right text-muted">11:21 AM</span>
-              <div class="dropdown-message small">This is an automated server response message. All systems are online.</div>
+              <div class="dropdown-message small"></div>
             </a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">
               <span class="text-success">
                 <strong>
-                  <i class="fa fa-long-arrow-up fa-fw"></i>Status Update</strong>
+                  <i class="fa fa-long-arrow-up fa-fw"></i></strong>
               </span>
               <span class="small float-right text-muted">11:21 AM</span>
-              <div class="dropdown-message small">This is an automated server response message. All systems are online.</div>
+              <div class="dropdown-message small"></div>
             </a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item small" href="#">View all alerts</a>
+            <a class="dropdown-item small" href="#">Voir tout les  alerts</a>
           </div>
         </li>
         <li class="nav-item">
           <form class="form-inline my-2 my-lg-0 mr-lg-2">
             <div class="input-group">
-              <input class="form-control search-top" type="text" placeholder="Search for...">
+              <input class="form-control search-top" type="text" placeholder="Rechercher...">
               <span class="input-group-btn">
                 <button class="btn btn-primary" type="button">
                   <i class="fa fa-search"></i>
@@ -189,7 +212,7 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
-            <i class="fa fa-fw fa-sign-out"></i>Logout</a>
+            <i class="fa fa-fw fa-sign-out"></i>Se connecter</a>
         </li>
       </ul>
     </div>
@@ -202,17 +225,17 @@
         <li class="breadcrumb-item">
           <a href="#">Dashboard</a>
         </li>
-        <li class="breadcrumb-item active">Your Courses</li>
+        <li class="breadcrumb-item active">vos formations</li>
       </ol>
 		<div class="box_general">
 			<div class="header_box">
-				<h2 class="d-inline-block">Your Courses</h2>
+				<h2 class="d-inline-block">vos formations</h2>
 				<div class="filter">
 					<select name="orderby" class="selectbox">
-						<option value="Any status">Any status</option>
-						<option value="Approved">Started</option>
-						<option value="Pending">Pending</option>
-						<option value="Cancelled">Cancelled</option>
+						<option value="Any status">aucun statut</option>
+						<option value="Approved">Debut</option>
+						<option value="Pending">en cours</option>
+						<option value="Cancelled">Fermer</option>
 					</select>
 				</div>
 			</div>
@@ -220,31 +243,31 @@
 				<ul>
 					<li>
 						<figure><img src="img/course_1.jpg" alt=""></figure>
-						<h4>Course title <i class="pending">Pending</i></h4>
+						<h4>Titre de la formations <i class="pending">En attendant</i></h4>
 						<ul class="course_list">
-							<li><strong>Start date</strong> 11 November 2017</li>
-							<li><strong>Expire date</strong> 11 April 2018</li>
-							<li><strong>Category</strong> Science, Economy</li>
-							<li><strong>Teacher</strong> Mark Twain</li>
+							<li><strong>Date Debut</strong> 11 November 2017</li>
+							<li><strong>Date Fin</strong> 11 April 2018</li>
+							<li><strong>Categorie</strong> Science, Economy</li>
+							<li><strong>Enseignant</strong> Mark Twain</li>
 						</ul>
-						<h6>Course description</h6> 
-						<p>Lorem ipsum dolor sit amet, est ei idque voluptua copiosae, pro detracto disputando reformidans at, ex vel suas eripuit. Vel alii zril maiorum ex, mea id sale eirmod epicurei. Sit te possit senserit, eam alia veritus maluisset ei, id cibo vocent ocurreret per. Te qui doming doctus referrentur, usu debet tamquam et. Sea ut nullam aperiam, mei cu tollit salutatus delicatissimi. His appareat perfecto intellegat te. </p>
+						<h6>Description de la formation</h6> 
+						<p>  </p>
 						<ul class="buttons">
-							<li><a href="#0" class="btn_1 gray approve"><i class="fa fa-fw fa-check-circle-o"></i> Approve</a></li>
-							<li><a href="#0" class="btn_1 gray delete"><i class="fa fa-fw fa-times-circle-o"></i> Cancel</a></li>
+							<li><a href="#0" class="btn_1 gray approve"><i class="fa fa-fw fa-check-circle-o"></i> Approuver</a></li>
+							<li><a href="#0" class="btn_1 gray delete"><i class="fa fa-fw fa-times-circle-o"></i> Annuler</a></li>
 						</ul>
 					</li>
 					<li>
 						<figure><img src="img/course_2.jpg" alt=""></figure>
-						<h4>Course title <i class="cancel">Cancelled</i></h4>
+						<h4>titre de la formation <i class="cancel">Annuler</i></h4>
 						<ul class="course_list">
-							<li><strong>Start date</strong> 11 November 2017</li>
-							<li><strong>Expire date</strong> 11 April 2018</li>
-							<li><strong>Category</strong> Science, Economy</li>
-							<li><strong>Teacher</strong> Mark Twain</li>
+						<li><strong>Date Debut</strong> 11 November 2017</li>
+							<li><strong>Date Fin</strong> 11 April 2018</li>
+							<li><strong>Categorie</strong> Science, Economy</li>
+							<li><strong>Enseignant</strong> Mark Twain</li>
 						</ul>
-						<h6>Course description</h6> 
-						<p>Lorem ipsum dolor sit amet, est ei idque voluptua copiosae, pro detracto disputando reformidans at, ex vel suas eripuit. Vel alii zril maiorum ex, mea id sale eirmod epicurei. Sit te possit senserit, eam alia veritus maluisset ei, id cibo vocent ocurreret per. Te qui doming doctus referrentur, usu debet tamquam et. Sea ut nullam aperiam, mei cu tollit salutatus delicatissimi. His appareat perfecto intellegat te. </p>
+						<h6>Description de la formation</h6> 
+						<p> </p>
 						<ul class="buttons">
 							<li><a href="#0" class="btn_1 gray approve"><i class="fa fa-fw fa-check-circle-o"></i> Approve</a></li>
 							<li><a href="#0" class="btn_1 gray delete"><i class="fa fa-fw fa-times-circle-o"></i> Cancel</a></li>
@@ -252,18 +275,18 @@
 					</li>
 					<li>
 						<figure><img src="img/course_3.jpg" alt=""></figure>
-						<h4>Course title <i class="approved">Started</i></h4>
+						<h4>titre de la formation <i class="cancel">Annuler</i></h4>
 						<ul class="course_list">
-							<li><strong>Start date</strong> 11 November 2017</li>
-							<li><strong>Expire date</strong> 11 April 2018</li>
-							<li><strong>Category</strong> Science, Economy</li>
-							<li><strong>Teacher</strong> Mark Twain</li>
+						<li><strong>Date Debut</strong> 11 November 2017</li>
+							<li><strong>Date Fin</strong> 11 April 2018</li>
+							<li><strong>Categorie</strong> Science, Economy</li>
+							<li><strong>Enseignant</strong> Mark Twain</li>
 						</ul>
-						<h6>Course description</h6> 
-						<p>Lorem ipsum dolor sit amet, est ei idque voluptua copiosae, pro detracto disputando reformidans at, ex vel suas eripuit. Vel alii zril maiorum ex, mea id sale eirmod epicurei. Sit te possit senserit, eam alia veritus maluisset ei, id cibo vocent ocurreret per. Te qui doming doctus referrentur, usu debet tamquam et. Sea ut nullam aperiam, mei cu tollit salutatus delicatissimi. His appareat perfecto intellegat te. </p>
+						<h6>Description de la formation</h6> 
+						<p>  </p>
 						<ul class="buttons">
-							<li><a href="#0" class="btn_1 gray approve"><i class="fa fa-fw fa-check-circle-o"></i> Approve</a></li>
-							<li><a href="#0" class="btn_1 gray delete"><i class="fa fa-fw fa-times-circle-o"></i> Cancel</a></li>
+							<li><a href="#0" class="btn_1 gray approve"><i class="fa fa-fw fa-check-circle-o"></i> Approuver</a></li>
+							<li><a href="#0" class="btn_1 gray delete"><i class="fa fa-fw fa-times-circle-o"></i> Annuler</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -273,13 +296,13 @@
 		<nav aria-label="...">
 			<ul class="pagination pagination-sm add_bottom_30">
 				<li class="page-item disabled">
-					<a class="page-link" href="#" tabindex="-1">Previous</a>
+					<a class="page-link" href="#" tabindex="-1">Précédent</a>
 				</li>
 				<li class="page-item"><a class="page-link" href="#">1</a></li>
 				<li class="page-item"><a class="page-link" href="#">2</a></li>
 				<li class="page-item"><a class="page-link" href="#">3</a></li>
 				<li class="page-item">
-					<a class="page-link" href="#">Next</a>
+					<a class="page-link" href="#">Suivant</a>
 				</li>
 			</ul>
 		</nav>
@@ -304,17 +327,15 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Prêt à partir?</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <div class="modal-body">Sélectionnez "Se Déconnecter" ci-dessous si vous voulez finir votre session en cours.</div>
+          <div class="modal-body">Selectionner "Se deconnecter" si vous êtes sure  </div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
-            <form th:action="@{/logout}" method="POST">
-            	<button type="submit" class="btn btn-primary" value="">Se Déconnecter</button>
-            </form>
+            <a class="btn btn-primary" th:href="@{#}">Se deconnecter</a>
           </div>
         </div>
       </div>
